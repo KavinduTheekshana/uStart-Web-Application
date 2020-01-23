@@ -20,20 +20,37 @@ Route::get('dashboard', function () {
 });
 
 Route::get('addusers', function () {
-    return view('addusers');
+    return view('users/addusers');
 });
 
 Route::get('manageusers', function () {
-    return view('manageusers');
+    return view('users/manageusers');
 });
 
 Route::get('addcustomers', function () {
-    return view('addcustomers');
+    return view('customers/addcustomers');
 });
 
 Route::get('managecustomers', function () {
-    return view('managecustomers');
+    return view('customers/managecustomers');
 });
+
+Route::get('addproduct', function () {
+    return view('products/addproduct');
+});
+
+Route::get('manageproduct', function () {
+    return view('products/manageproduct');
+});
+
+Route::get('category', function () {
+    return view('category/category');
+});
+
+Route::get('managecategory', function () {
+    return view('category/managecategory');
+});
+
 
 Auth::routes();
 

@@ -25,6 +25,9 @@
          <!-- Responsive datatable examples -->
          <link href="../assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" /> 
 
+
+         <link href="../assets/plugins/dropify/css/dropify.min.css" rel="stylesheet">
+
     </head>
 
     <body>
@@ -103,8 +106,6 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="#"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
-                            <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted mr-2"></i> My Wallet</a>
-                            <a class="dropdown-item" href="#"><i class="dripicons-gear text-muted mr-2"></i> Settings</a>
                             <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted mr-2"></i> Lock screen</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#"><i class="dripicons-exit text-muted mr-2"></i> Logout</a>
@@ -154,6 +155,30 @@
                             <li class="nav-item"><a class="nav-link" href="managecustomers"><i class="ti-control-record"></i>Manage</a></li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="javascript: void(0);"><i class="ti-shopping-cart-full"></i><span>Products</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="addproduct"><i class="ti-control-record"></i>Add Products</a></li>
+                            <li class="nav-item"><a class="nav-link" href="manageproduct"><i class="ti-control-record"></i>Products List</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="category"><i class="ti-layers-alt"></i><span>Category</span></a>                        
+                    </li>
+
+
+                    {{-- <li>
+                        <a href="javascript: void(0);"><i class="ti-layers-alt"></i><span>Category</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="addcategory"><i class="ti-control-record"></i>Add Category</a></li>
+                            <li class="nav-item"><a class="nav-link" href="managecategory"><i class="ti-control-record"></i>Category List</a></li>
+                        </ul>
+                    </li> --}}
+
+
 
                     <li>
                         <a href="javascript: void(0);"><i class="ti-briefcase"></i>
@@ -390,6 +415,10 @@
         <script src="../assets/plugins/datatables/dataTables.responsive.min.js"></script>
         <script src="../assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
         <script src="../assets/pages/jquery.datatable.init.js"></script>
+
+
+        <script src="../assets/plugins/dropify/js/dropify.min.js"></script>
+        <script src="../assets/pages/jquery.form-upload.init.js"></script>
 
     </body>
 </html>
