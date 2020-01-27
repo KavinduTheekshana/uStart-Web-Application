@@ -10,7 +10,7 @@
                         <div class="card-body">
                             <div class="px-3">
                                 <div class="auth-logo-box">
-                                    <a href="../analytics/analytics-index.html" class="logo logo-admin"><img src="../assets/images/logo-sm.png" height="55" alt="logo" class="auth-logo"></a>
+                                    <a href="../analytics/analytics-index.html" class="logo logo-admin"><img src="{{ asset('../assets/images/logo-sm.png') }}" height="55" alt="logo" class="auth-logo"></a>
                                 </div><!--end auth-logo-box-->
                                 
                                 <div class="text-center auth-logo-text">
@@ -19,8 +19,16 @@
                                 </div> <!--end auth-logo-text-->  
 
                                 
+
+
                                 <form class="form-horizontal auth-form my-4" method="POST" action="{{ route('password.email') }}">
                                     @csrf
+
+                                    @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('status') }}
+                                    </div>
+                                    @endif
 
                                     <div class="form-group">
                                         <label for="useremail">Email</label>

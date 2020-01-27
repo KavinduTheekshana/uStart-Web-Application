@@ -8,27 +8,30 @@
         <meta content="Mannatthemes" name="author" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="../assets/images/favicon.ico">
+        <link href="{{ asset('../assets/images/favicon.ico') }}" rel="shortcut icon">
 
         <!-- App css -->
-        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/css/metisMenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('../assets/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('../assets/css/icons.css') }}" rel="stylesheet">
+        <link href="{{ asset('../assets/css/metisMenu.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('../assets/css/style.css') }}" rel="stylesheet">
+
+
 
     </head>
 
     <body class="account-body accountbg">
             @yield('content')
         <!-- jQuery  -->
-        <script src="../assets/js/jquery.min.js"></script>
-        <script src="../assets/js/bootstrap.bundle.min.js"></script>
-        <script src="../assets/js/metisMenu.min.js"></script>
-        <script src="../assets/js/waves.min.js"></script>
-        <script src="../assets/js/jquery.slimscroll.min.js"></script>
+        <script src="{{ asset('../assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('../assets/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('../assets/js/metisMenu.min.js') }}"></script>
+        <script src="{{ asset('../assets/js/waves.min.js') }}"></script>
+        <script src="{{ asset('../assets/js/jquery.slimscroll.min.js') }}"></script>
 
         <!-- App js -->
-        <script src="../assets/js/app.js"></script>
+        <script src="{{ asset('../assets/js/app.js') }}"></script>
+
 
     </body>
 </html>
