@@ -24,20 +24,24 @@
         <!-- end page title end breadcrumb -->
         
         <div class="row">
-
+            @foreach($users as $user)
             <div class="col-lg-3">
                 <div class="card client-card">                               
                     <div class="card-body text-center">                                    
-                        <img src="../assets/images/users/user-8.jpg" alt="user" class="rounded-circle thumb-xl">
-                        <h5 class=" client-name">Charles Fang</h5> 
+                        <img src="{{$user->profile_pic}}" alt="user" class="rounded-circle thumb-xl">
+                        <h5 class=" client-name">{{$user->name}}</h5> 
+                        @if($user->status)
                         <span class="badge badge-md badge-success">Profile is Active</span>
+                        @else
+                        <span class="badge badge-md badge-danger">Profile is Deactivate</span>
+                        @endif
                         <br>
                         <br>
-                        <span class="text-muted mr-3"><i class="dripicons-location mr-2 text-info"></i>New York, USA</span>
+                        <span class="text-muted mr-3"><i class="dripicons-location mr-2 text-info"></i>{{$user->city}}</span>
                         <br>
-                        <span  class="text-muted"><i class="dripicons-phone mr-2 text-info"></i>+1 123 456 789</span>
+                        <span  class="text-muted"><i class="dripicons-phone mr-2 text-info"></i>{{$user->telephone}}</span>
                         <br>
-                        <span  class="text-muted"><i class="dripicons-calendar mr-2 text-info"></i>2015-10-28</span>
+                        <span  class="text-muted"><i class="dripicons-calendar mr-2 text-info"></i>{{$user->joined_date}}</span>
                         
                         <br><br>
                         <button type="button" class="btn btn-sm btn-gradient-pink">&nbsp; &nbsp; View &nbsp; &nbsp; </button>
@@ -46,7 +50,7 @@
                     </div><!--end card-body-->                                                                     
                 </div><!--end card-->
             </div><!--end col-->   
-
+            @endforeach
         </div><!--end row-->
         
         

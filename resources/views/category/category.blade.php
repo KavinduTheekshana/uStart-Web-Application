@@ -95,9 +95,6 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
-                                            <th>Shop</th>
-                                            <th>Telephone</th>
-                                            <th>District</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -107,9 +104,7 @@
                                         <tr>
                                             <td>1</td>
                                             <td>Tiger Nixon</td>
-                                            <td>AKG Stors</td>
-                                            <td>0112 152 152</td>
-                                            <td>Colombo</td>
+
                                             <td>
                                                 <button type="button" class="btn btn-success waves-effect waves-light"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                                 <button type="button" class="btn btn-warning waves-effect waves-light"><i class="fa fa-pen" aria-hidden="true"></i></button>

@@ -23,9 +23,11 @@ Route::get('addusers', function () {
     return view('users/addusers');
 });
 
-Route::get('manageusers', function () {
-    return view('users/manageusers');
-});
+Route::get('manageusers','UsersController@manageusers');
+
+// Route::get('manageusers', function () {
+//     return view('users/manageusers');
+// });
 
 Route::get('addcustomers', function () {
     return view('customers/addcustomers');
@@ -55,3 +57,6 @@ Route::get('managecategory', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::post('/adduser', 'UsersController@adduser');
