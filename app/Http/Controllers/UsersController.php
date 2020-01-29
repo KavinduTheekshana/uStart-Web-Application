@@ -86,5 +86,18 @@ class UsersController extends Controller
       }
 
 
+      public function user_diactivate($id){
+        $task=user::find($id);
+        $task->status=false;
+        $task->save();
+       return redirect()->back();
+      }
+
+      public function user_activate($id){
+        $task=user::find($id);
+        $task->status=true;
+        $task->save();
+       return redirect()->back();
+      }
   
 }

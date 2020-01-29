@@ -26,6 +26,8 @@ Route::post('/adduser', 'UsersController@adduser');
 Route::get('manageusers','UsersController@manageusers');
 Route::get('edituser/{id}', 'UsersController@edituser');
 Route::post('updateuser','UsersController@updateuser');
+Route::get('user_diactivate/{id}', 'UsersController@user_diactivate');
+Route::get('user_activate/{id}', 'UsersController@user_activate');
 
 
 Route::get('addcustomers', function () {

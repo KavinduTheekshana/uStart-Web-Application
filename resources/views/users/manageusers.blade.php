@@ -40,9 +40,9 @@
                         <img src="{{$user->profile_pic}}" alt="user" class="rounded-circle thumb-xl">
                         <h5 class=" client-name">{{$user->name}}</h5>
                         @if($user->status)
-                        <span class="badge badge-md badge-success">Profile is Active</span>
+                        <a href="user_diactivate/{{$user->id}}"><span class="badge badge-md badge-success">Profile is Active</span></a>
                         @else
-                        <span class="badge badge-md badge-danger">Profile is Deactivate</span>
+                        <a href="user_activate/{{$user->id}}"><span class="badge badge-md badge-danger">Profile is Deactivate</span></a>
                         @endif
                         <br>
                         <br>
