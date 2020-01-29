@@ -22,12 +22,11 @@ Route::get('dashboard', function () {
 Route::get('addusers', function () {
     return view('users/addusers');
 });
-
+Route::post('/adduser', 'UsersController@adduser');
 Route::get('manageusers','UsersController@manageusers');
+Route::get('edituser/{id}', 'UsersController@edituser');
+Route::post('updateuser','UsersController@updateuser');
 
-// Route::get('manageusers', function () {
-//     return view('users/manageusers');
-// });
 
 Route::get('addcustomers', function () {
     return view('customers/addcustomers');
@@ -59,4 +58,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::post('/adduser', 'UsersController@adduser');
+

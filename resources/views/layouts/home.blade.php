@@ -137,36 +137,36 @@
                 <ul class="metismenu left-sidenav-menu">
 
                     <li>
-                        <a href="dashboard"><i class="ti-layout-grid2"></i><span>Dashboard</span></a>                        
+                        <a href="{{ url('dashboard') }}"><i class="ti-layout-grid2"></i><span>Dashboard</span></a>                        
                     </li>
 
                     <li>
                         <a href="javascript: void(0);"><i class="ti-user"></i><span>Users</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">
-                            <li class="nav-item"><a class="nav-link" href="addusers"><i class="ti-control-record"></i>Add Users</a></li>
-                            <li class="nav-item"><a class="nav-link" href="manageusers"><i class="ti-control-record"></i>Manage Users</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('addusers') }}"><i class="ti-control-record"></i>Add Users</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('manageusers') }}"><i class="ti-control-record"></i>Manage Users</a></li>
                         </ul>
                     </li>
 
                     <li>
                         <a href="javascript: void(0);"><i class="ti-face-smile"></i><span>Customers</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">
-                            <li class="nav-item"><a class="nav-link" href="addcustomers"><i class="ti-control-record"></i>Add Customers</a></li>
-                            <li class="nav-item"><a class="nav-link" href="managecustomers"><i class="ti-control-record"></i>Manage</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('addcustomers') }}"><i class="ti-control-record"></i>Add Customers</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('managecustomers') }}"><i class="ti-control-record"></i>Manage</a></li>
                         </ul>
                     </li>
 
                     <li>
                         <a href="javascript: void(0);"><i class="ti-shopping-cart-full"></i><span>Products</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">
-                            <li class="nav-item"><a class="nav-link" href="addproduct"><i class="ti-control-record"></i>Add Products</a></li>
-                            <li class="nav-item"><a class="nav-link" href="manageproduct"><i class="ti-control-record"></i>Products List</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('addproduct') }}"><i class="ti-control-record"></i>Add Products</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('manageproduct') }}"><i class="ti-control-record"></i>Products List</a></li>
                         </ul>
                     </li>
 
 
                     <li>
-                        <a href="category"><i class="ti-layers-alt"></i><span>Category</span></a>                        
+                        <a href="{{ url('category') }}"><i class="ti-layers-alt"></i><span>Category</span></a>                        
                     </li>
 
 
