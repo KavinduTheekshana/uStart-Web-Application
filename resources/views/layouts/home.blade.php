@@ -25,6 +25,10 @@
          <!-- Responsive datatable examples -->
          <link href="../assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" /> 
 
+         <!-- Sweet Alert -->
+        <link href="../assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+        <link href="../assets/plugins/animate/animate.css" rel="stylesheet" type="text/css">
+
 
          <link href="../assets/plugins/dropify/css/dropify.min.css" rel="stylesheet">
 
@@ -415,6 +419,10 @@
         <script src="../assets/plugins/datatables/dataTables.responsive.min.js"></script>
         <script src="../assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
         <script src="../assets/pages/jquery.datatable.init.js"></script>
+
+        <!-- Sweet-Alert  -->
+        <script src="../assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
+        <script src="../assets/pages/jquery.sweet-alert.init.js"></script>
 
 
         <script src="../assets/plugins/dropify/js/dropify.min.js"></script>

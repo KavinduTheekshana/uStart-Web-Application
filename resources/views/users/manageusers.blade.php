@@ -31,6 +31,18 @@
         </div>
         @endif
 
+        @if (session('user_diactivate_status'))
+        <div class="alert alert-danger-shadow">
+            {{ session('user_diactivate_status') }}
+        </div>
+        @endif
+
+        @if (session('user_activate_status'))
+        <div class="alert alert-success-shadow">
+            {{ session('user_activate_status') }}
+        </div>
+        @endif
+
 
         <div class="row">
             @foreach($users as $user)
@@ -39,11 +51,20 @@
                     <div class="card-body text-center">
                         <img src="{{$user->profile_pic}}" alt="user" class="rounded-circle thumb-xl">
                         <h5 class=" client-name">{{$user->name}}</h5>
+
                         @if($user->status)
-                        <a href="user_diactivate/{{$user->id}}"><span class="badge badge-md badge-success">Profile is Active</span></a>
+                        <a href="user_diactivate/{{$user->id}}"><span class="badge badge-md badge-success">Profile is
+                                Active</span></a>
                         @else
-                        <a href="user_activate/{{$user->id}}"><span class="badge badge-md badge-danger">Profile is Deactivate</span></a>
+                        <a href="user_activate/{{$user->id}}"><span class="badge badge-md badge-danger">Profile is
+                                Deactivate</span></a>
                         @endif
+                        <a type="button" id="sa-warning"><span class="badge badge-md badge-warning"><i
+                                    class="fas fa-trash-alt"></i></span></a>
+                        {{-- <a  href="user_delete/{{$user->id}}"><span class="badge badge-md badge-warning"><i
+                                class="fas fa-trash-alt"></i></span></a> --}}
+
+
                         <br>
                         <br>
                         <span class="text-muted mr-3"><i
@@ -57,8 +78,8 @@
 
                         <br><br>
                         <button type="button" class="view btn btn-sm btn-gradient-pink" data-toggle="modal"
-                            onclick="viewData({{$user->id}})" data-animation="bounce" data-target=".bs-example-modal-lg"
-                            data-modelname="{{$user->name}}"> &nbsp; &nbsp; View &nbsp; &nbsp; </button>
+                            onclick="viewData({{$user->id}})" data-animation="bounce"
+                            data-target=".bs-example-modal-lg"> &nbsp; &nbsp; View &nbsp; &nbsp; </button>
 
 
                         <input type="hidden" modelprofilepic="{{$user->profile_pic}}" modelname="{{$user->name}}"
@@ -199,14 +220,6 @@
 
         </script>
 
-
-        {{-- <script>
-            $('.view').on('click', function (e) {
-                e.preventDefault();
-                document.getElementById('modelname').value = $(this).data('modelname');
-                
-            });
-        </script> --}}
 
 
 

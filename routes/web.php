@@ -28,15 +28,19 @@ Route::get('edituser/{id}', 'UsersController@edituser');
 Route::post('updateuser','UsersController@updateuser');
 Route::get('user_diactivate/{id}', 'UsersController@user_diactivate');
 Route::get('user_activate/{id}', 'UsersController@user_activate');
+Route::get('user_delete/{id}', 'UsersController@user_delete');
 
 
 Route::get('addcustomers', function () {
     return view('customers/addcustomers');
 });
+Route::post('/addcustomer', 'CustomerController@addcutomer');
+Route::get('managecustomers','CustomerController@managecustomers');
 
-Route::get('managecustomers', function () {
-    return view('customers/managecustomers');
-});
+
+// Route::get('managecustomers', function () {
+//     return view('customers/managecustomers');
+// });
 
 Route::get('addproduct', function () {
     return view('products/addproduct');

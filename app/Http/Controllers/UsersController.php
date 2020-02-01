@@ -90,14 +90,19 @@ class UsersController extends Controller
         $task=user::find($id);
         $task->status=false;
         $task->save();
-       return redirect()->back();
+       return redirect()->back()->with('user_diactivate_status', 'Profile Was Diactivated Sucessfully');
       }
 
       public function user_activate($id){
         $task=user::find($id);
         $task->status=true;
         $task->save();
-       return redirect()->back();
+       return redirect()->back()->with('user_activate_status', 'Profile Was Activated Sucessfully');;
+      }
+
+      public function user_delete($id){
+        DB::table('users')->where('id', $id)->delete();
+        return redirect()->back();
       }
   
 }
