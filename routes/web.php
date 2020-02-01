@@ -36,6 +36,9 @@ Route::get('addcustomers', function () {
 });
 Route::post('/addcustomer', 'CustomerController@addcutomer');
 Route::get('managecustomers','CustomerController@managecustomers');
+Route::get('editcustomer/{id}', 'CustomerController@editcustomer');
+Route::post('updatecustomer','CustomerController@updatecustomer');
+
 
 
 // Route::get('managecustomers', function () {

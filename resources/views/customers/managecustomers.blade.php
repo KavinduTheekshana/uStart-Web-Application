@@ -36,6 +36,27 @@
                         <h4 class="mt-0 header-title">Manage Customers Details and Genarate QR Code</h4>
                         <br>
 
+                        @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <strong>Whoops!</strong> There were some problems with your input.<br>
+                            <ul>
+
+
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
+                        @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                        @endif
+
+                        
+
                         <table id="row_callback" class="table table-striped table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
@@ -74,8 +95,8 @@
                                             data-animation="bounce" data-target=".bs-example-modal-lg" type="button"
                                             class="btn btn-success waves-effect waves-light"><i class="fa fa-eye"
                                                 aria-hidden="true"></i></button>
-                                        <button type="button" class="btn btn-warning waves-effect waves-light"><i
-                                                class="fa fa-pen" aria-hidden="true"></i></button>
+                                        <a href="editcustomer/{{$customer->id}}" type="button" class="btn btn-warning waves-effect waves-light"><i
+                                                class="fa fa-pen" aria-hidden="true"></i></a>
                                         <button type="button" class="btn btn-danger waves-effect waves-light"><i
                                                 class="fa fa-trash" aria-hidden="true"></i></button>
                                         <button type="button" class="btn btn-purple waves-effect waves-light"><i
@@ -212,7 +233,6 @@
                 $("#modelprovince").val($("#user"+id).attr('modelprovince'));
                 $("#modeldistrict").val($("#user"+id).attr('modeldistrict'));
                 $("#modelcity").val($("#user"+id).attr('modelcity'));
-                $("#modeljoineddate").val($("#user"+id).attr('modeljoineddate'));
             }
 
         </script>
