@@ -55,7 +55,19 @@
                         </div>
                         @endif
 
-                        
+                        @if (session('customer_diactivate_status'))
+                        <div class="alert alert-outline-danger alert-danger-shadow">
+                            {{ session('customer_diactivate_status') }}
+                        </div>
+                        @endif
+
+                        @if (session('customer_activate_status'))
+                        <div class="alert alert-outline-success alert-success-shadow">
+                            {{ session('customer_activate_status') }}
+                        </div>
+                        @endif
+
+
 
                         <table id="row_callback" class="table table-striped table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -66,6 +78,7 @@
                                     <th>Shop</th>
                                     <th>Telephone</th>
                                     <th>District</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -83,6 +96,17 @@
                                     <td>{{$customer->telephone}}</td>
                                     <td>{{$customer->district}}</td>
                                     <td>
+                                        @if($customer->status)
+                                        <a href="user_diactivate/{{$customer->id}}"><span
+                                                class="badge badge-md badge-success">Profile is
+                                                Active</span></a>
+                                        @else
+                                        <a href="user_activate/{{$customer->id}}"><span
+                                                class="badge badge-md badge-danger">Profile is
+                                                Deactivate</span></a>
+                                        @endif
+                                    </td>
+                                    <td>
                                         <input type="hidden" modelprofilepic="{{$customer->profile_pic}}"
                                             modelname="{{$customer->name}}" modelshopname="{{$customer->shop_name}}"
                                             modeltelephone="{{$customer->telephone}}" modelemail="{{$customer->email}}"
@@ -93,14 +117,34 @@
 
                                         <button data-toggle="modal" onclick="viewData({{$customer->id}})"
                                             data-animation="bounce" data-target=".bs-example-modal-lg" type="button"
-                                            class="btn btn-success waves-effect waves-light"><i class="fa fa-eye"
-                                                aria-hidden="true"></i></button>
-                                        <a href="editcustomer/{{$customer->id}}" type="button" class="btn btn-warning waves-effect waves-light"><i
+                                            class="btn btn-gradient-purple waves-effect waves-light"><i
+                                                class="fa fa-eye" aria-hidden="true"></i></button>
+                                        <a href="editcustomer/{{$customer->id}}" type="button"
+                                            class="btn btn-gradient-warning waves-effect waves-light"><i
                                                 class="fa fa-pen" aria-hidden="true"></i></a>
-                                        <button type="button" class="btn btn-danger waves-effect waves-light"><i
+                                        <button type="button" class="btn btn-gradient-pink waves-effect waves-light"><i
                                                 class="fa fa-trash" aria-hidden="true"></i></button>
-                                        <button type="button" class="btn btn-purple waves-effect waves-light"><i
-                                                class="fa fa-qrcode" aria-hidden="true"></i></button>
+
+                                        @if($customer->status)
+                                        <a href="customer_diactivate/{{$customer->id}}" type="button"
+                                            class="btn btn-gradient-danger waves-effect waves-light"><i
+                                                class="fa fa-lock" aria-hidden="true"></i></a>
+                                        {{-- <a href="user_diactivate/{{$customer->id}}"><span
+                                            class="badge badge-md badge-success">Profile is
+                                            Active</span></a> --}}
+                                        @else
+                                        {{-- <a href="user_activate/{{$customer->id}}"><span
+                                            class="badge badge-md badge-danger">Profile is
+                                            Deactivate</span></a> --}}
+
+                                        <a href="customer_activate/{{$customer->id}}" type="button"
+                                            class="btn btn-gradient-success waves-effect waves-light"><i
+                                                class="fa fa-unlock" aria-hidden="true"></i></button>
+                                            @endif
+                                            {{-- <button type="button" class="btn btn-gradient-success waves-effect waves-light"><i
+                                                class="fa fa-lock" aria-hidden="true"></i></button> --}}
+                                            {{-- <button type="button" class="btn btn-purple waves-effect waves-light"><i
+                                                class="fa fa-qrcode" aria-hidden="true"></i></button> --}}
                                     </td>
                                 </tr>
                                 @endforeach
@@ -146,8 +190,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="PhoneNo">Shop Name</label>
-                                                    <input type="text" disabled class="form-control"
-                                                        id="modelshopname">
+                                                    <input type="text" disabled class="form-control" id="modelshopname">
                                                 </div>
                                             </div>
 

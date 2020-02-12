@@ -84,4 +84,24 @@ class CustomerController extends Controller
         return redirect('managecustomers')->with('status', 'Customer Details Edit Sucessfully');
       
       }
+
+
+      public function jsonOupt(){
+        $customers = DB::table('users')->get();    
+        return $customers->toJson();
+      }
+
+      public function customer_diactivate($id){
+        $task=user::find($id);
+        $task->status=false;
+        $task->save();
+       return redirect()->back()->with('customer_diactivate_status', 'Category Was Diactivated Sucessfully');
+      }
+
+      public function customer_activate($id){
+        $task=user::find($id);
+        $task->status=true;
+        $task->save();
+       return redirect()->back()->with('customer_activate_status', 'Category Was Activated Sucessfully');;
+      }
 }

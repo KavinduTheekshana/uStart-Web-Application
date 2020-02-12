@@ -32,13 +32,13 @@
         @endif
 
         @if (session('user_diactivate_status'))
-        <div class="alert alert-danger-shadow">
+        <div class="alert alert-outline-danger alert-danger-shadow">
             {{ session('user_diactivate_status') }}
         </div>
         @endif
 
         @if (session('user_activate_status'))
-        <div class="alert alert-success-shadow">
+        <div class="alert alert-outline-success alert-success-shadow">
             {{ session('user_activate_status') }}
         </div>
         @endif
