@@ -41,18 +41,11 @@ Route::post('updatecustomer','CustomerController@updatecustomer');
 Route::get('customer_diactivate/{id}', 'CustomerController@customer_diactivate');
 Route::get('customer_activate/{id}', 'CustomerController@customer_activate');
 
+
+
 Route::get('jsonOupt','CustomerController@jsonOupt');
 
 
-
-// Route::get('managecustomers', function () {
-//     return view('customers/managecustomers');
-// });
-
-
-// Route::get('category', function () {
-//     return view('category/category');
-// });
 Route::get('category','CategoryController@category');
 Route::post('/addcategory', 'CategoryController@addcategory');
 Route::post('/editcategory', 'CategoryController@editcategory');
@@ -60,13 +53,15 @@ Route::get('category_diactivate/{id}', 'CategoryController@category_diactivate')
 Route::get('category_activate/{id}', 'CategoryController@category_activate');
 
 
-Route::get('addproduct', function () {
-    return view('products/addproduct');
-});
 
-Route::get('manageproduct', function () {
-    return view('products/manageproduct');
-});
+Route::get('addproduct','ProductController@addproduct');
+Route::post('/saveproduct','ProductController@saveproduct');
+Route::get('manageproduct','ProductController@manageproduct');
+
+
+// Route::get('manageproduct', function () {
+//     return view('products/manageproduct');
+// });
 
 
 Route::get('managecategory', function () {
