@@ -69,6 +69,9 @@ Route::get('managecategory', function () {
 });
 
 
+Route::get('addlocation','LocationController@addlocation');
+Route::get('viewlocation','LocationController@viewlocation');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

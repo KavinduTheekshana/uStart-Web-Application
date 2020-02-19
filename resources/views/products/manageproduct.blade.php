@@ -64,7 +64,7 @@
                                     </td>
                                     <td>Sports</td>
                                     <td>{{$product->number_of_pcs}}</td>
-                                    <td>{{$product->product_price}}</td>
+                                    <td>Rs : {{$product->product_price}} .00</td>
                                     <td>
                                         @if($product->number_of_pcs==0)
                                             <span class="badge badge-md badge-soft-danger">Out of Stock</span>
