@@ -163,11 +163,11 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         Barryvdh\Debugbar\ServiceProvider::class,
-
+        Cornford\Googlmapper\MapperServiceProvider::class,
         /*
          * Package Service Providers...
          */
-
+        
         /*
          * Application Service Providers...
          */
@@ -176,6 +176,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+
+        
 
     ],
 
@@ -228,6 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Mapper'         => Cornford\Googlmapper\Facades\MapperFacade::class,
 
     ],
 

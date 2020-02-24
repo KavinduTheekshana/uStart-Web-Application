@@ -13,7 +13,8 @@
         "kreait/firebase-php": "4.35",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^1.1"
+        "laravel/ui": "^1.1",
+        "cornford/googlmapper": "3.*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
