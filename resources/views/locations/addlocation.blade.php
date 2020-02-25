@@ -39,9 +39,29 @@
                         </h4>
                         <br>
 
+                        @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <strong>Whoops!</strong> There were some problems with your input.<br>
+                            <ul>
+
+
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
+                        @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                        @endif
+
                         <div class="container">
 
-                            <form action="">
+                            <form role="form" method="POST" action="{{action('LocationController@saveshoploaction')}}" enctype="multipart/form-data">
+                                @csrf
 
 
 
@@ -61,7 +81,7 @@
                                         <div class="form-group">
                                             <label class="sr-only">City</label>
                                             <select class="select2 form-control mb-3 custom-select" name="customer_id">
-                                                <option>Select</option>
+                                                <option value="">Select</option>
                                                 <optgroup label="Customer (Without Location)">
                                                     @foreach($customers as $customer)
                                                 <option value="{{$customer->id}}">{{$customer->name}}</option>
@@ -116,10 +136,10 @@
                 var map = new google.maps.Map(
                     document.getElementById('map'), {
                         center: {
-                            lat: -33.8688,
-                            lng: 151.2195
+                            lat: 6.9271,
+                            lng: 79.8612
                         },
-                        zoom: 13
+                        zoom: 15
                     });
     
                 var input = document.getElementById('pac-input');

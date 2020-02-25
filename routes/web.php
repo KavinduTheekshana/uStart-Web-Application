@@ -26,6 +26,7 @@ Route::get('addusers', function () {
 });
 Route::post('/adduser', 'UsersController@adduser');
 Route::get('manageusers','UsersController@manageusers');
+Route::get('userslist','UsersController@userslist');
 Route::get('edituser/{id}', 'UsersController@edituser');
 Route::post('updateuser','UsersController@updateuser');
 Route::get('user_diactivate/{id}', 'UsersController@user_diactivate');
@@ -73,6 +74,7 @@ Route::get('managecategory', function () {
 
 Route::get('addlocation','LocationController@addlocation');
 Route::get('viewlocation','LocationController@viewlocation');
+Route::post('saveshoploaction', 'LocationController@saveshoploaction');
 
 Auth::routes();
 

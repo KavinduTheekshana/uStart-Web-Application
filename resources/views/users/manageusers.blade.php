@@ -102,6 +102,15 @@
         </div>
         <!--end row-->
 
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                {{ $users->links() }}
+                {{-- <li class="page-item"><a class="page-link" href=""></a></li> --}}
+
+
+            </ul><!--end pagination-->
+        </nav><!--end nav-->
+
         <!--  Modal content for the above example -->
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
             aria-hidden="true">

@@ -159,6 +159,8 @@
                                     class="ti-control-record"></i>Add Users</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('manageusers') }}"><i
                                     class="ti-control-record"></i>Manage Users</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('userslist') }}"><i
+                                    class="ti-control-record"></i>Users List</a></li>
                     </ul>
                 </li>
 

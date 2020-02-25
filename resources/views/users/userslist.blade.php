@@ -13,11 +13,11 @@
                     <div class="float-right">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0);">uStart</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Customers</a></li>
-                            <li class="breadcrumb-item active">Manage</li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Users</a></li>
+                            <li class="breadcrumb-item active">Users List</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Manage Coustomers</h4>
+                    <h4 class="page-title">Users List</h4>
                 </div>
                 <!--end page-title-box-->
             </div>
@@ -33,7 +33,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h4 class="mt-0 header-title">Manage Customers Details and Genarate QR Code</h4>
+                        <h4 class="mt-0 header-title">Manage Users in List of Table</h4>
                         <br>
 
                         @if (count($errors) > 0)
@@ -75,7 +75,7 @@
                                 <tr>
                                     <th>Profile</th>
                                     <th>Name</th>
-                                    <th>Shop</th>
+                                    <th>Address</th>
                                     <th>Telephone</th>
                                     <th>District</th>
                                     <th>Status</th>
@@ -85,48 +85,53 @@
 
 
                             <tbody>
-                                @foreach($customers as $customer)
+                                @foreach($users as $user)
                                 <tr>
                                     <td><a class="user-avatar mr-2">
-                                            <img src="{{$customer->profile_pic}}" alt="user"
+                                            <img src="{{$user->profile_pic}}" alt="user"
                                                 class="thumb-sm rounded-circle">
                                         </a></td>
-                                    <td>{{$customer->name}}</td>
-                                    <td>{{$customer->shop_name}}</td>
-                                    <td>{{$customer->telephone}}</td>
-                                    <td>{{$customer->district}}</td>
+                                    <td>{{$user->name}}</td>
                                     <td>
-                                        @if($customer->status)
-                                        <a href="customer_diactivate/{{$customer->id}}"><span
+                                        @if (strlen(strip_tags($user->address)) > 40)
+                                        {!! substr(strip_tags($user->address), 0, 40) !!} ...
+                                        @else
+                                        {{$user->address}}
+                                        @endif
+                                    </td>
+                                    <td>{{$user->telephone}}</td>
+                                    <td>{{$user->district}}</td>
+                                    <td>
+                                        @if($user->status)
+                                        <a href="user_diactivate/{{$user->id}}"><span
                                                 class="badge badge-md badge-success">Profile is
                                                 Active</span></a>
                                         @else
-                                        <a href="customer_activate/{{$customer->id}}"><span
+                                        <a href="user_activate/{{$user->id}}"><span
                                                 class="badge badge-md badge-danger">Profile is
                                                 Deactivate</span></a>
                                         @endif
                                     </td>
                                     <td>
-                                        <input type="hidden" modelprofilepic="{{$customer->profile_pic}}"
-                                            modelname="{{$customer->name}}" modelshopname="{{$customer->shop_name}}"
-                                            modeltelephone="{{$customer->telephone}}" modelemail="{{$customer->email}}"
-                                            modeladdress="{{$customer->address}}"
-                                            modelprovince="{{$customer->province}}"
-                                            modeldistrict="{{$customer->district}}" modelcity="{{$customer->city}}"
-                                            id="user{{$customer->id}}">
+                                        <input type="hidden" modelprofilepic="{{$user->profile_pic}}"
+                                            modelname="{{$user->name}}" modelshopname="{{$user->shop_name}}"
+                                            modeltelephone="{{$user->telephone}}" modelemail="{{$user->email}}"
+                                            modeladdress="{{$user->address}}" modelprovince="{{$user->province}}"
+                                            modeldistrict="{{$user->district}}" modelcity="{{$user->city}}"
+                                            modeljoineddate="{{$user->joined_date}}" id="user{{$user->id}}">
 
-                                        <button data-toggle="modal" onclick="viewData({{$customer->id}})"
+                                        <button data-toggle="modal" onclick="viewData({{$user->id}})"
                                             data-animation="bounce" data-target=".bs-example-modal-lg" type="button"
                                             class="btn btn-gradient-purple waves-effect waves-light"><i
                                                 class="fa fa-eye" aria-hidden="true"></i></button>
-                                        <a href="editcustomer/{{$customer->id}}" type="button"
+                                        <a href="edituser/{{$user->id}}" type="button"
                                             class="btn btn-gradient-warning waves-effect waves-light"><i
                                                 class="fa fa-pen" aria-hidden="true"></i></a>
                                         <button type="button" class="btn btn-gradient-pink waves-effect waves-light"><i
                                                 class="fa fa-trash" aria-hidden="true"></i></button>
 
-                                        @if($customer->status)
-                                        <a href="customer_diactivate/{{$customer->id}}" type="button"
+                                        @if($user->status)
+                                        <a href="user_diactivate/{{$user->id}}" type="button"
                                             class="btn btn-gradient-danger waves-effect waves-light"><i
                                                 class="fa fa-lock" aria-hidden="true"></i></a>
                                         {{-- <a href="user_diactivate/{{$customer->id}}"><span
@@ -137,7 +142,7 @@
                                             class="badge badge-md badge-danger">Profile is
                                             Deactivate</span></a> --}}
 
-                                        <a href="customer_activate/{{$customer->id}}" type="button"
+                                        <a href="user_activate/{{$user->id}}" type="button"
                                             class="btn btn-gradient-success waves-effect waves-light"><i
                                                 class="fa fa-unlock" aria-hidden="true"></i></button>
                                             @endif
@@ -189,8 +194,9 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="PhoneNo">Shop Name</label>
-                                                    <input type="text" disabled class="form-control" id="modelshopname">
+                                                    <label for="PhoneNo">Telephone</label>
+                                                    <input type="text" disabled class="form-control"
+                                                        id="modeltelephone">
                                                 </div>
                                             </div>
 
@@ -242,9 +248,9 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="PhoneNo">Telephone</label>
+                                                    <label for="PhoneNo">Joined Date</label>
                                                     <input type="text" disabled class="form-control"
-                                                        id="modeltelephone">
+                                                        id="modeljoineddate">
                                                 </div>
                                             </div>
 
@@ -276,6 +282,7 @@
                 $("#modelprovince").val($("#user"+id).attr('modelprovince'));
                 $("#modeldistrict").val($("#user"+id).attr('modeldistrict'));
                 $("#modelcity").val($("#user"+id).attr('modelcity'));
+                $("#modeljoineddate").val($("#user"+id).attr('modeljoineddate'));
             }
 
         </script>

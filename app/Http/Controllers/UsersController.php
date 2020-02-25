@@ -38,8 +38,13 @@ class UsersController extends Controller
 
 
       public function manageusers(){
-        $users = DB::table('users')->where('user_type', '1')->get();  
+        $users = DB::table('users')->where('user_type', '1')->paginate(20);  
         return view('users/manageusers',['users'=>$users]);
+      }
+
+      public function userslist(){
+        $users = DB::table('users')->where('user_type', '1')->paginate(20);  
+        return view('users/userslist',['users'=>$users]);
       }
 
       public function edituser($id){

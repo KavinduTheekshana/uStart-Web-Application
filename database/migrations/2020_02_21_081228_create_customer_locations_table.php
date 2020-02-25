@@ -18,7 +18,7 @@ class CreateCustomerLocationsTable extends Migration
             $table->string('address');
             $table->integer('customer_id');
             $table->double('lat');
-            $table->double('ing');
+            $table->double('lng');
             $table->timestamps();
         });
     }
