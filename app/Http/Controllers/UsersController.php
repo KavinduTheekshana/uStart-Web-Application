@@ -109,5 +109,11 @@ class UsersController extends Controller
         DB::table('users')->where('id', $id)->delete();
         return redirect()->back();
       }
+
+      public function index()
+    {
+        $posts=user::get();
+        return response($posts,200);
+    }
   
 }

@@ -200,6 +200,19 @@
                                     class="ti-control-record"></i>Add Locations</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('viewlocation') }}"><i
                                     class="ti-control-record"></i>Locations List</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('viewalllocation') }}"><i
+                                    class="ti-control-record"></i>All Locations</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);"><i class="dripicons-user-group"></i><span>Groups</span><span
+                            class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li class="nav-item"><a class="nav-link" href="{{ url('creategroup') }}"><i
+                                    class="ti-control-record"></i>Create Group</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('managegroup') }}"><i
+                                    class="ti-control-record"></i>Manage Groups</a></li>
                     </ul>
                 </li>
 

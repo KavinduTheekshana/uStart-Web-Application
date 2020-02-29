@@ -23,6 +23,11 @@ class LocationController extends Controller
         return view('locations/viewlocation',['customerlocations'=>$customerlocations]);
       }
 
+      public function viewalllocation(){  
+        $customerlocations = DB::table('customer_locations')->join('users', 'customer_locations.customer_id', '=', 'users.id')->select('customer_locations.*', 'users.shop_name')->get();
+        return view('locations/viewalllocation',['customerlocations'=>$customerlocations]);
+      }
+
       public function saveshoploaction(Request $request){
         $this->validate($request, [
           'address' => ['required', 'string'],
