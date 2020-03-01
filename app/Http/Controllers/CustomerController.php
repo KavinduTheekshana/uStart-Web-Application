@@ -102,6 +102,6 @@ class CustomerController extends Controller
         $task=user::find($id);
         $task->status=true;
         $task->save();
-       return redirect()->back()->with('customer_activate_status', 'Category Was Activated Sucessfully');;
+       return redirect()->back()->with('customer_activate_status', 'Category Was Activated Sucessfully');
       }
 }

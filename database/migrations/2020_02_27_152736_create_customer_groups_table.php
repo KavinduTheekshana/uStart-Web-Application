@@ -13,10 +13,10 @@ class CreateCoustomerGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('coustomer_groups', function (Blueprint $table) {
+        Schema::create('customer_groups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->integer('coustomer_id');
+            $table->integer('customer_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateCoustomerGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coustomer_groups');
+        Schema::dropIfExists('customer_groups');
     }
 }

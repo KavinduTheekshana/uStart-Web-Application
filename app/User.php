@@ -39,11 +39,11 @@ class User extends Authenticatable
     ];
 
     public function customers(){
-        return $this->belongsToMany(Customer::class,'customer_groups','user_id');
+        return $this->belongsToMany(Customer::class,'customer_groups','user_id')->withTimestamps();
     }
 
     public function customer_group_update_user(){
-        return $this->belongsToMany(Customer::class,'users','group_status');
+        return $this->belongsTo(User::class,'users','group_status');
     }
 
 

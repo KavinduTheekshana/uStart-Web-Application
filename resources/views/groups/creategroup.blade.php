@@ -25,6 +25,12 @@
         </div>
         <!--end row-->
         <!-- end page title end breadcrumb -->
+        
+        @if (session('customer_create_status'))
+        <div class="alert alert-outline-success alert-success-shadow">
+            {{ session('customer_create_status') }}
+        </div>
+        @endif
 
 
 
@@ -32,7 +38,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        
+                       
 
                         <form role="form" method="POST" action="{{action('GroupController@addgroup')}}" enctype="multipart/form-data">
                         @csrf
@@ -109,12 +115,7 @@
                         </div>
                         @endif
 
-                        @if (session('customer_activate_status'))
-                        <div class="alert alert-outline-success alert-success-shadow">
-                            {{ session('customer_activate_status') }}
-                        </div>
-                        @endif
-
+                       
 
 
                         <table id="student_table" class="table table-striped table-bordered dt-responsive nowrap"

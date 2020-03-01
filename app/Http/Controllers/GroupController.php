@@ -21,20 +21,45 @@ class GroupController extends Controller
         return view('groups/creategroup',['users'=>$users,'customers'=>$customers]);
       }
 
-      public function addgroup(Request $request){
+    public function addgroup(Request $request){
 
 
-// $user = User::Find(36);
-// return $user->customers;
+      $user = User::find($request->user_id);
+      $user->group_status=true;
+      $user->save();
+      $user->customers()->attach($request->customer_id);
 
+      $count = count($request->customer_id);
+      for($i = 0;$i<$count;$i++){
+        $customerid = $request->customer_id[$i];
+        $customer = Customer::find($customerid);
+        $customer->group_status=true;
+        $customer->save();
+      }
+
+      return redirect()->back()->with('customer_create_status', 'Group Created Sucessfully');
+      
+
+
+
+
+
+
+        // $user = User::Find(8);       
+        // return $user->customers;
         // return$request->customer_id ;
         // return Customer::all();
-        $user = User::find($request->user_id);
-        
-        $user->customers()->attach($request->customer_id);
+        // $task=user::find($request->user_id);
+        // $task->status=false;
+        // $task->save();
+        // return $user;
+        // return redirect()->back()->with('customer_create_status', 'Group Created Sucessfully');
+        // $customer=True;
+        // $customer->customer_group_update_user()->attach(true);
+        // return $user;         
         // return $user;
         
-      }
+    }
 
 
 }
