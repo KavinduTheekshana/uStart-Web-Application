@@ -34,24 +34,24 @@
                     <div class="card-body">
                         
 
-                        <form>
+                        <form role="form" method="POST" action="{{action('GroupController@addgroup')}}" enctype="multipart/form-data">
+                        @csrf
                        
                                 <h4 class="mt-0 header-title">Create Coustomers Group</h4>
 
-                                <div class="row">
-                             <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="sr-only">City</label>
-                                <select class="select2 form-control mb-3 custom-select" name="customer_id">
+                                <select class="select2 form-control mb-3 custom-select" name="user_id">
                                     <option value="">Users</option>
                                     <optgroup label="Customer (City)">
-                                        @foreach($customers as $customer)
-                                    <option value="{{$customer->id}}">{{$customer->name}} &nbsp; ({{$customer->city}})</option>
+                                        @foreach($users as $user)
+                                    <option value="{{$user->id}}">{{$user->name}} &nbsp; ({{$user->city}})</option>
                                         @endforeach
                                     </optgroup>
                                     
                                 </select>
-
                             </div>
                         </div>
 
@@ -140,7 +140,7 @@
                                 <tr>
                                     <td>{{$customer->id}}</td>
                                     <td>
-                                        <input type="checkbox">
+                                        <input name="customer_id[]" value="{{$customer->id}}" type="checkbox">
                                     </td>
 
 

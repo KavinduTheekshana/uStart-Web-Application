@@ -84,19 +84,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('creategroup','GroupController@creategroup');
 Route::get('managegroup','GroupController@managegroup');
+Route::post('addgroup', 'GroupController@addgroup');
 
 
 
 
 
-Route::get('ajaxdata', 'AjaxController@index')->name('ajaxdata');
-Route::get('ajaxdata/getdata', 'AjaxController@getdata')->name('ajaxdata.getdata');
 
-Route::post('ajaxdata/postdata', 'AjaxController@postdata')->name('ajaxdata.postdata');
-
-Route::get('ajaxdata/fetchdata', 'AjaxController@fetchdata')->name('ajaxdata.fetchdata');
-Route::get('ajaxdata/removedata', 'AjaxController@removedata')->name('ajaxdata.removedata');
-Route::get('ajaxdata/massremove', 'AjaxController@massremove')->name('ajaxdata.massremove');
 
 
 
