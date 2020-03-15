@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20b50111-defa-437d-b667-f9510b007f20" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uStart.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uStart.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GroupController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_27_152736_create_coustomer_groups_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/groups/creategroup.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/groups/creategroup.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/groups/managegeoups.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/groups/managegeoups.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,6 +177,7 @@
       <workItem from="1578994237137" duration="1971000" />
       <workItem from="1579069273759" duration="21000" />
       <workItem from="1583064760395" duration="858000" />
+      <workItem from="1583082957641" duration="1707000" />
     </task>
     <servers />
   </component>
@@ -191,9 +189,9 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1368" y="178" key="#Notifications/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583065372355" />
-    <state x="-1075" y="383" key="com.intellij.ide.util.TipDialog" timestamp="1583064760807">
+    <state x="-1075" y="383" key="com.intellij.ide.util.TipDialog" timestamp="1583082972527">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1075" y="383" key="com.intellij.ide.util.TipDialog/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583064760807" />
+    <state x="-1075" y="383" key="com.intellij.ide.util.TipDialog/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583082972527" />
   </component>
 </project>

@@ -45,13 +45,14 @@
 
 
         <div class="row">
+
             @foreach($customerlocations as $customerlocation)
             <div class="col-lg-6">
                 <div class="card client-card">
                     <div class="card-body">
                         <h5>{{$customerlocation->shop_name}}</h5>
                         <h6 style="color: dimgray">{{$customerlocation->address}}</h6>
-                        <div style="height: 300px" id="map"></div>
+                        <div style="height: 300px" id="map{{$customerlocation->id}}"></div>
 
 
                     </div>
@@ -61,9 +62,10 @@
             </div>
             <!--end col-->
 
-            
 
             @endforeach
+
+
         </div>
         <!--end row-->
 
@@ -78,7 +80,7 @@
 
   
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcuvYDk04jY_H-o_EIcdr8vQi3Mz0eWnc"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcuvYDk04jY_H-o_EIcdr8vQi3Mz0eWnc"async defer></script>
   
 
     <script>
@@ -88,18 +90,20 @@
         // in place of a google.maps.LatLng object.
         @foreach($customerlocations as $customerlocation)
         var map;
-        function initialize() {
+
+
+        function initMap{{$customerlocation->id}}() {
           var mapOptions = {
             zoom: 12,
-            center: {lat: -34.397, lng: 150.644}
+            center: {lat: {{$customerlocation->lat}}, lng: {{$customerlocation->lng}}}
           };
-          map = new google.maps.Map(document.getElementById('map'),
+          map = new google.maps.Map(document.getElementById('map{{$customerlocation->id}}'),
               mapOptions);
   
           var marker = new google.maps.Marker({
             // The below line is equivalent to writing:
             // position: new google.maps.LatLng(-34.397, 150.644)
-            position: {lat: -34.397, lng: 150.644},
+            position: {lat: {{$customerlocation->lat}}, lng: {{$customerlocation->lng}}},
             map: map
           });
   
@@ -117,7 +121,7 @@
           });
         }
   
-        google.maps.event.addDomListener(window, 'load', initialize);
+        google.maps.event.addDomListener(window, 'load', initMap{{$customerlocation->id}});
         @endforeach
       </script>
 

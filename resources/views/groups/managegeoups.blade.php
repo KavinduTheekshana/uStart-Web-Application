@@ -29,11 +29,16 @@
 
 
         <div class="row">
+            @foreach($customer_groups as $customer_group)
             <div class="col-lg-3">
+
+
+                
+
                 <div class="card team-card">
                     <div class="card-body">
                         <div class=" d-flex justify-content-between">
-                            <h4 class="header-title mt-0 d-inline-block">UI/UX Design Team</h4>
+                            <h4 class="header-title mt-0 d-inline-block">Group ID : {{$customer_group->id}} </h4>
                             <div class="dropdown d-inline-block">
                                 <a class="nav-link dropdown-toggle arrow-none" id="dLabel1" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v font-20 text-muted"></i>
@@ -48,22 +53,20 @@
                         
                         <div class="text-center">
                             <img src="../assets/images/users/user-4.jpg" alt="" class="rounded-circle user-img img-thumbnail">
-                            <div class="online-circle">
-                                <i class="fa fa-circle text-success"></i>
-                            </div>                                        
+                                                                   
                             <h4 class="team-leader">Marnie Flowers</h4>
-                            <p class="text-muted font-12">Team Leader</p>
+                            <p class="text-muted font-12">Relevent User</p>
                             <ul class="list-inline language-skill mb-4">
-                                <li class="list-inline-item">Tag : </li>
-                                <li class="list-inline-item"><span>android</span></li>
-                                <li class="list-inline-item"><span>jango</span></li>
-                                <li class="list-inline-item"><span>python</span></li>
-                                <li class="list-inline-item">
+                                <li class="list-inline-item"></li>
+                                <li class="list-inline-item"></li>
+                                <li class="list-inline-item"></li>
+                                <li class="list-inline-item"></li>
+                                {{-- <li class="list-inline-item">
                                     <button type="button" class="btn btn-soft-secondary btn-xs btn-round font-12">+</button>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div> 
-                        <small class="float-right font-13 pt-2 text-muted">1 Lead , 7 Employees</small>
+                        <small class="float-right font-13 pt-2 text-muted">1 User , 7 Customers</small>
                         <div class="img-group">
                             <a class="user-avatar user-avatar-group" href="#">
                                 <img src="../assets/images/users/user-6.jpg" alt="user" class="rounded-circle thumb-xs">
@@ -80,8 +83,12 @@
                         </div> <!--end img-group-->                   
                     </div><!--end card-body-->
                 </div><!--end card-->
+                
+
+
+
             </div><!--end col-->
-            
+            @endforeach
  
         </div><!--end row-->
 

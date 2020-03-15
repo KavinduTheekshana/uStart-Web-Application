@@ -19,19 +19,19 @@ Route::get('/', function () {
 
 Route::get('dashboard', function () {
     return view('dashboard');
-});
+})->middleware('auth');
 
 Route::get('addusers', function () {
     return view('users/addusers');
 });
 Route::post('/adduser', 'UsersController@adduser');
-Route::get('manageusers','UsersController@manageusers');
-Route::get('userslist','UsersController@userslist');
-Route::get('edituser/{id}', 'UsersController@edituser');
-Route::post('updateuser','UsersController@updateuser');
-Route::get('user_diactivate/{id}', 'UsersController@user_diactivate');
-Route::get('user_activate/{id}', 'UsersController@user_activate');
-Route::get('user_delete/{id}', 'UsersController@user_delete');
+Route::get('manageusers','UsersController@manageusers')->middleware('auth');
+Route::get('userslist','UsersController@userslist')->middleware('auth');
+Route::get('edituser/{id}', 'UsersController@edituser')->middleware('auth');
+Route::post('updateuser','UsersController@updateuser')->middleware('auth');
+Route::get('user_diactivate/{id}', 'UsersController@user_diactivate')->middleware('auth');
+Route::get('user_activate/{id}', 'UsersController@user_activate')->middleware('auth');
+Route::get('user_delete/{id}', 'UsersController@user_delete')->middleware('auth');
 
 
 Route::get('addcustomers', function () {
@@ -45,21 +45,20 @@ Route::get('customer_diactivate/{id}', 'CustomerController@customer_diactivate')
 Route::get('customer_activate/{id}', 'CustomerController@customer_activate');
 
 
-
-Route::get('jsonOupt','CustomerController@jsonOupt');
-
-
-Route::get('category','CategoryController@category');
-Route::post('/addcategory', 'CategoryController@addcategory');
-Route::post('/editcategory', 'CategoryController@editcategory');
-Route::get('category_diactivate/{id}', 'CategoryController@category_diactivate');
-Route::get('category_activate/{id}', 'CategoryController@category_activate');
+Route::get('jsonOupt','CustomerController@jsonOupt')->middleware('auth');
 
 
+Route::get('category','CategoryController@category')->middleware('auth');
+Route::post('/addcategory', 'CategoryController@addcategory')->middleware('auth');
+Route::post('/editcategory', 'CategoryController@editcategory')->middleware('auth');
+Route::get('category_diactivate/{id}', 'CategoryController@category_diactivate')->middleware('auth');
+Route::get('category_activate/{id}', 'CategoryController@category_activate')->middleware('auth');
 
-Route::get('addproduct','ProductController@addproduct');
-Route::post('/saveproduct','ProductController@saveproduct');
-Route::get('manageproduct','ProductController@manageproduct');
+
+
+Route::get('addproduct','ProductController@addproduct')->middleware('auth');
+Route::post('/saveproduct','ProductController@saveproduct')->middleware('auth');
+Route::get('manageproduct','ProductController@manageproduct')->middleware('auth');
 
 
 // Route::get('manageproduct', function () {
@@ -72,10 +71,10 @@ Route::get('managecategory', function () {
 });
 
 
-Route::get('addlocation','LocationController@addlocation');
-Route::get('viewlocation','LocationController@viewlocation');
-Route::get('viewalllocation','LocationController@viewalllocation');
-Route::post('saveshoploaction', 'LocationController@saveshoploaction');
+Route::get('addlocation','LocationController@addlocation')->middleware('auth');
+Route::get('viewlocation','LocationController@viewlocation')->middleware('auth');
+Route::get('viewalllocation','LocationController@viewalllocation')->middleware('auth');
+Route::post('saveshoploaction', 'LocationController@saveshoploaction')->middleware('auth');
 
 Auth::routes();
 

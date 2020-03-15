@@ -99,6 +99,7 @@ class UsersController extends Controller
       }
 
       public function user_activate($id){
+        
         $task=user::find($id);
         $task->status=true;
         $task->save();
@@ -116,4 +117,41 @@ class UsersController extends Controller
         return response($posts,200);
     }
   
+
+    public function getProfileDetails(Request $request){
+      $JsonArray=[];
+      if(isset($request->id) &&  $request->id!=""){
+          $user = DB::table('users')->where('id','=', $request->id)->first();  
+          if($user!=null){
+                  $JsonArray['user']=$user;
+                  $JsonArray['code']='1';
+              
+          } else{
+              $JsonArray['code']='0';
+          }
+      }else{
+          $JsonArray['code']='0';
+      }
+
+      return json_encode($JsonArray);
+  }
+
+
+  public function getCoustomerCount(Request $request){
+    $JsonArray=[];
+    if(isset($request->id) &&  $request->id!=""){
+        $user = DB::table('customer_groups')->where('id','=', $request->id)->first();  
+        if($user!=null){
+                $JsonArray['user']=$user;
+                $JsonArray['code']='1';
+            
+        } else{
+            $JsonArray['code']='0';
+        }
+    }else{
+        $JsonArray['code']='0';
+    }
+
+    return json_encode($JsonArray);
+}
 }

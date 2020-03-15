@@ -55,15 +55,15 @@
                         </div>
                         @endif
 
-                        @if (session('customer_diactivate_status'))
+                        @if (session('user_diactivate_status'))
                         <div class="alert alert-outline-danger alert-danger-shadow">
-                            {{ session('customer_diactivate_status') }}
+                            {{ session('user_diactivate_status') }}
                         </div>
                         @endif
 
-                        @if (session('customer_activate_status'))
+                        @if (session('user_activate_status'))
                         <div class="alert alert-outline-success alert-success-shadow">
-                            {{ session('customer_activate_status') }}
+                            {{ session('user_activate_status') }}
                         </div>
                         @endif
 

@@ -18,3 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('users', 'UsersController');
+
+Route::get('mobilelogin','auth\LoginController@mobileLogin');
+Route::get('checkLogin','auth\LoginController@checkLogin');
+
+
+Route::get('getProfileDetails','UsersController@getProfileDetails');

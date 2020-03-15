@@ -10,14 +10,15 @@ use App\Customer;
 class GroupController extends Controller
 {
     public function managegroup(){  
-        $customers = DB::table('users')->where(['location_status'=>0,'user_type'=>'2'])->get(); 
-        return view('groups/managegeoups',['customers'=>$customers]);
+        // $customer_groups = DB::table('customer_groups')->join('users', 'customer_groups.customer_id', '=', 'users.id')->groupBy('customer_groups.user_id')->get();
+        $customer_groups = DB::table('customer_groups')->groupBy('customer_groups.user_id')->join('users', 'customer_groups.customer_id', '=', 'users.id')->select(['customer_groups.user_id','users.name'])->get();
+        return $customer_groups;
+        return view('groups/managegeoups',['customer_groups'=>$customer_groups]);
       }
 
       public function creategroup(){
-        $users = User::whereGroupStatus(0)->get();
+        $users = DB::table('users')->where([['user_type','=', '1'],['group_status','=', '0']])->get();
         $customers = Customer::whereGroupStatus(0)->get();
-        // $customers = DB::table('users')->where(['user_type'=>'2','group_status'=>0])->get();  
         return view('groups/creategroup',['users'=>$users,'customers'=>$customers]);
       }
 
@@ -39,25 +40,6 @@ class GroupController extends Controller
 
       return redirect()->back()->with('customer_create_status', 'Group Created Sucessfully');
       
-
-
-
-
-
-
-        // $user = User::Find(8);       
-        // return $user->customers;
-        // return$request->customer_id ;
-        // return Customer::all();
-        // $task=user::find($request->user_id);
-        // $task->status=false;
-        // $task->save();
-        // return $user;
-        // return redirect()->back()->with('customer_create_status', 'Group Created Sucessfully');
-        // $customer=True;
-        // $customer->customer_group_update_user()->attach(true);
-        // return $user;         
-        // return $user;
         
     }
 

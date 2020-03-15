@@ -47,13 +47,13 @@ class User extends Authenticatable
     }
 
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::addGlobalScope('filter', function (Builder $builder) {
-            $builder->where('user_type', '=', '1');
-        });
+    //     static::addGlobalScope('filter', function (Builder $builder) {
+    //         $builder->where('user_type', '=', '0');
+    //     });
 
-    }
+    // }
 }
