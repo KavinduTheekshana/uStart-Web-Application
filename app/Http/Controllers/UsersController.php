@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 use App\user;
 use Illuminate\Support\Facades\Hash;
 use DB;
+use Auth;
 
 class UsersController extends Controller
 {
+  public function addusers(){
+        $id =Auth::user()->id;
+        $authprofile = DB::table('users')->where(['id'=>$id])->first();
+        return view('users/addusers',['authprofile'=>$authprofile]);
+  }
+
+
     public function adduser(Request $request){
         $this->validate($request, [
           'name' => ['required', 'string', 'max:255'],

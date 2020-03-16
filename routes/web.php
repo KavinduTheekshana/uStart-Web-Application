@@ -17,13 +17,26 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::get('dashboard', function () {
-    return view('dashboard');
-})->middleware('auth');
+Route::get('dashboard', 'DashboardController@index')->middleware('auth');
+Route::get('logout', 'DashboardController@logout');
+
+// Route::get('dashboard', function () {
+//     return view('dashboard');
+// })->middleware('auth');
 
 Route::get('addusers', function () {
     return view('users/addusers');
 });
+
+Route::get('profile','ProfileController@profile')->middleware('auth');
+Route::post('updateprofile', 'ProfileController@updateprofile');
+Route::post('updateprofilepicture', 'ProfileController@updateprofilepicture');
+Route::post('changePassword', 'ProfileController@changePassword');
+
+
+
+
+Route::get('addusers','UsersController@addusers')->middleware('auth');
 Route::post('/adduser', 'UsersController@adduser');
 Route::get('manageusers','UsersController@manageusers')->middleware('auth');
 Route::get('userslist','UsersController@userslist')->middleware('auth');
