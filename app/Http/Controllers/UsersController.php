@@ -46,19 +46,24 @@ class UsersController extends Controller
 
 
       public function manageusers(){
+        $id =Auth::user()->id;
+        $authprofile = DB::table('users')->where(['id'=>$id])->first();
         $users = DB::table('users')->where('user_type', '1')->paginate(20);  
-        return view('users/manageusers',['users'=>$users]);
+        return view('users/manageusers',['users'=>$users,'authprofile'=>$authprofile]);
       }
 
       public function userslist(){
+        $id =Auth::user()->id;
+        $authprofile = DB::table('users')->where(['id'=>$id])->first();
         $users = DB::table('users')->where('user_type', '1')->paginate(20);  
-        return view('users/userslist',['users'=>$users]);
+        return view('users/userslist',['users'=>$users,'authprofile'=>$authprofile]);
       }
 
       public function edituser($id){
-        $users = DB::table('users')->where('id', $id)->first();  
-        
-        return view('users/editusers',['users'=>$users]);
+        $id =Auth::user()->id;
+        $authprofile = DB::table('users')->where(['id'=>$id])->first();
+        $users = DB::table('users')->where('id', $id)->first();   
+        return view('users/editusers',['users'=>$users,'authprofile'=>$authprofile]);
       }
 
 

@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categories;
 use DB;
+use Auth;
 
 class CategoryController extends Controller
 {
     public function category(){
+        $id =Auth::user()->id;
+        $authprofile = DB::table('users')->where(['id'=>$id])->first();
         $category = DB::table('categories')->get(); 
-        return view('category/category',['category'=>$category]);
+        return view('category/category',['category'=>$category,'authprofile'=>$authprofile]);
       }
 
 

@@ -50,7 +50,7 @@
                                 <!--end col-->
                                 <div class="col-lg-4 ml-auto">
                                     <ul class="list-unstyled personal-detail">
-                                        <li class=""><i class="dripicons-phone mr-2 text-info font-18"></i> <b> phone
+                                        <li class=""><i class="dripicons-phone mr-2 text-info font-18"></i> <b> Phone
                                             </b> : {{$authprofile->telephone}}</li>
                                         <li class="mt-2"><i class="dripicons-mail text-info font-18 mt-2 mr-2"></i> <b>
                                                 Email </b> : {{$authprofile->email}}</li>

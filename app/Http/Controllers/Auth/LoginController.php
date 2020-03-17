@@ -49,9 +49,18 @@ class LoginController extends Controller
             if($user!=null){
                 // echo Hash::check('plain-text', $request->password);
                 if($user->password==Hash::check($request->password, $user->password)){
-                    $JsonArray['code']='1';
-                    $JsonArray['user']=$user;
-                    $JsonArray['msg']='Welcome';
+                    if ($user->user_type==1) {
+                        $JsonArray['code']='1';
+                        $JsonArray['user']=$user;
+                        $JsonArray['msg']='Welcome sels rep';
+                    } else if($user->user_type==2){
+                        $JsonArray['code']='2';
+                        $JsonArray['user']=$user;
+                        $JsonArray['msg']='Welcome customer';
+                    }else{
+                        $JsonArray['msg']='Your Blocked';
+                        $JsonArray['code']='3';
+                    }
                 }else{
                     $JsonArray['msg']='Password Incorrect';
                     $JsonArray['code']='0';
@@ -73,12 +82,15 @@ class LoginController extends Controller
         $JsonArray=[];
         if(isset($request->id) &&  $request->id!=""){
             $user = DB::table('users')->where('id','=', $request->id)->first();  
-            if($user!=null){
+            if($user->user_type==1){
                 // echo Hash::check('plain-text', $request->password);
                 $JsonArray['code']='1';
             
+            } else if($user->user_type==2){
+                $JsonArray['code']='2';
             } else{
-                $JsonArray['code']='0';
+                $JsonArray['msg']='Your Blocked';
+                $JsonArray['code']='3';
             }
         }else{
             $JsonArray['code']='0';

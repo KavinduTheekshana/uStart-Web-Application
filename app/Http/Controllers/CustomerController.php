@@ -6,9 +6,16 @@ use Illuminate\Http\Request;
 use App\user;
 use Illuminate\Support\Facades\Hash;
 use DB;
+use Auth;
 
 class CustomerController extends Controller
 {
+  public function addcustomers(){
+    $id =Auth::user()->id;
+    $authprofile = DB::table('users')->where(['id'=>$id])->first();
+    return view('customers/addcustomers',['authprofile'=>$authprofile]);
+  }
+
     public function addcutomer(Request $request){
         $this->validate($request, [
           'name' => ['required', 'string', 'max:255'],
@@ -39,13 +46,17 @@ class CustomerController extends Controller
       }
 
       public function managecustomers(){
+        $id =Auth::user()->id;
+        $authprofile = DB::table('users')->where(['id'=>$id])->first();
         $customers = DB::table('users')->where('user_type', '2')->get();  
-        return view('customers/managecustomers',['customers'=>$customers]);
+        return view('customers/managecustomers',['customers'=>$customers,'authprofile'=>$authprofile]);
       }
 
       public function editcustomer($id){
+        $id =Auth::user()->id;
+        $authprofile = DB::table('users')->where(['id'=>$id])->first();
         $customers = DB::table('users')->where('id', $id)->first();    
-        return view('customers/editcustomers',['customers'=>$customers]);
+        return view('customers/editcustomers',['customers'=>$customers,'authprofile'=>$authprofile]);
       }
 
 

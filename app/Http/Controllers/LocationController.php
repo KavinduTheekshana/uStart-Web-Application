@@ -9,23 +9,30 @@ use Mapper;
 use DB;
 use App\user;
 use App\CustomerLocation;
+use Auth;
 
 
 class LocationController extends Controller
 {
     public function addlocation(){  
+        $id =Auth::user()->id;
+        $authprofile = DB::table('users')->where(['id'=>$id])->first();
         $customers = DB::table('users')->where(['location_status'=>0,'user_type'=>'2'])->get(); 
-        return view('locations/addlocation',['customers'=>$customers]);
+        return view('locations/addlocation',['customers'=>$customers,'authprofile'=>$authprofile]);
       }
 
-      public function viewlocation(){  
+      public function viewlocation(){
+        $id =Auth::user()->id;
+        $authprofile = DB::table('users')->where(['id'=>$id])->first();  
         $customerlocations = DB::table('customer_locations')->join('users', 'customer_locations.customer_id', '=', 'users.id')->select('customer_locations.*', 'users.shop_name')->paginate(10);
-        return view('locations/viewlocation',['customerlocations'=>$customerlocations]);
+        return view('locations/viewlocation',['customerlocations'=>$customerlocations,'authprofile'=>$authprofile]);
       }
 
-      public function viewalllocation(){  
+      public function viewalllocation(){
+        $id =Auth::user()->id;
+        $authprofile = DB::table('users')->where(['id'=>$id])->first();  
         $customerlocations = DB::table('customer_locations')->join('users', 'customer_locations.customer_id', '=', 'users.id')->select('customer_locations.*', 'users.shop_name')->get();
-        return view('locations/viewalllocation',['customerlocations'=>$customerlocations]);
+        return view('locations/viewalllocation',['customerlocations'=>$customerlocations,'authprofile'=>$authprofile]);
       }
 
       public function saveshoploaction(Request $request){

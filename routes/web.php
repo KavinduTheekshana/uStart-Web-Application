@@ -47,9 +47,10 @@ Route::get('user_activate/{id}', 'UsersController@user_activate')->middleware('a
 Route::get('user_delete/{id}', 'UsersController@user_delete')->middleware('auth');
 
 
-Route::get('addcustomers', function () {
-    return view('customers/addcustomers');
-});
+// Route::get('addcustomers', function () {
+//     return view('customers/addcustomers');
+// });
+Route::get('addcustomers', 'CustomerController@addcustomers');
 Route::post('/addcustomer', 'CustomerController@addcutomer');
 Route::get('managecustomers','CustomerController@managecustomers');
 Route::get('editcustomer/{id}', 'CustomerController@editcustomer');

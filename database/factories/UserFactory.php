@@ -28,7 +28,7 @@ $factory->define(User::class, function (Faker $faker) {
         'district' => $faker->stateAbbr,
         'city' => $faker->city,
         'joined_date' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'profile_pic' => "/uploads/profile_pic/default.png",
+        'profile_pic' => "uploads/profile_pic/default.png",
         'user_type' => $faker->numberBetween($min = 1, $max = 2),
         'status' => $faker->boolean,
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 

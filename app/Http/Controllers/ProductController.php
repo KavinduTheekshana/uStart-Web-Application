@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\products;
+use Auth;
 
 class ProductController extends Controller
 {
     public function addproduct(){
+        $id =Auth::user()->id;
+        $authprofile = DB::table('users')->where(['id'=>$id])->first();
         $category = DB::table('categories')->get(); 
-        return view('products/addproduct',['category'=>$category]);
+        return view('products/addproduct',['category'=>$category,'authprofile'=>$authprofile]);
       }
 
       public function saveproduct(Request $request){
@@ -42,7 +45,9 @@ class ProductController extends Controller
       }
 
       public function manageproduct(){
+        $id =Auth::user()->id;
+        $authprofile = DB::table('users')->where(['id'=>$id])->first();
         $products = DB::table('products')->get(); 
-        return view('products/manageproduct',['products'=>$products]);
+        return view('products/manageproduct',['products'=>$products,'authprofile'=>$authprofile]);
       }
 }
