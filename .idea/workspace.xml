@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="20b50111-defa-437d-b667-f9510b007f20" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GroupController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/groups/managegeoups.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/groups/managegeoups.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,6 +174,7 @@
       <workItem from="1579069273759" duration="21000" />
       <workItem from="1583064760395" duration="858000" />
       <workItem from="1583082957641" duration="1707000" />
+      <workItem from="1584453110551" duration="2434000" />
     </task>
     <servers />
   </component>
@@ -189,9 +186,21 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1368" y="178" key="#Notifications/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583065372355" />
-    <state x="-1075" y="383" key="com.intellij.ide.util.TipDialog" timestamp="1583082972527">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state x="676" y="303" key="com.intellij.ide.util.TipDialog" timestamp="1584453121810">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-1075" y="383" key="com.intellij.ide.util.TipDialog/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1583082972527" />
+    <state x="676" y="303" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1584453121810" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/DashboardController.php</url>
+          <line>4</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

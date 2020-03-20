@@ -47,28 +47,26 @@ class LoginController extends Controller
         if(isset($request->username) && isset($request->password) && $request->username!="" &&  $request->password!=""){
             $user = DB::table('users')->where('email','=', $request->username)->first();  
             if($user!=null){
-                // echo Hash::check('plain-text', $request->password);
                 if($user->password==Hash::check($request->password, $user->password)){
-                    if ($user->user_type==1) {
+                    if ($user->user_type==1 && $user->status==true) {
                         $JsonArray['code']='1';
                         $JsonArray['user']=$user;
                         $JsonArray['msg']='Welcome sels rep';
-                    } else if($user->user_type==2){
+                    } else if($user->user_type==2 && $user->status==true){
                         $JsonArray['code']='2';
                         $JsonArray['user']=$user;
                         $JsonArray['msg']='Welcome customer';
                     }else{
-                        $JsonArray['msg']='Your Blocked';
                         $JsonArray['code']='3';
                     }
                 }else{
-                    $JsonArray['msg']='Password Incorrect';
                     $JsonArray['code']='0';
+                    $JsonArray['msg']='Password Incorrect';      
                 }
             
-            } else{
-                $JsonArray['msg']='Not found use by that username';
+            }else{
                 $JsonArray['code']='0';
+                $JsonArray['msg']='Not Found Use By That Username';              
             }
         }else{
             $JsonArray['result']='error';
@@ -94,6 +92,7 @@ class LoginController extends Controller
             }
         }else{
             $JsonArray['code']='0';
+            $JsonArray['msg']='Your Blocked';
         }
 
         return json_encode($JsonArray);

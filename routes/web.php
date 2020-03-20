@@ -17,7 +17,8 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::get('dashboard', 'DashboardController@index')->middleware('auth');
+
+Route::get('dashboard', 'DashboardController@index')->middleware('Admin');
 Route::get('logout', 'DashboardController@logout');
 
 // Route::get('dashboard', function () {
@@ -28,16 +29,16 @@ Route::get('addusers', function () {
     return view('users/addusers');
 });
 
-Route::get('profile','ProfileController@profile')->middleware('auth');
-Route::post('updateprofile', 'ProfileController@updateprofile');
-Route::post('updateprofilepicture', 'ProfileController@updateprofilepicture');
-Route::post('changePassword', 'ProfileController@changePassword');
+Route::get('profile','ProfileController@profile')->middleware('Admin');
+Route::post('updateprofile', 'ProfileController@updateprofile')->middleware('auth');
+Route::post('updateprofilepicture', 'ProfileController@updateprofilepicture')->middleware('auth');
+Route::post('changePassword', 'ProfileController@changePassword')->middleware('auth');
 
 
 
 
 Route::get('addusers','UsersController@addusers')->middleware('auth');
-Route::post('/adduser', 'UsersController@adduser');
+Route::post('/adduser', 'UsersController@adduser')->middleware('auth');
 Route::get('manageusers','UsersController@manageusers')->middleware('auth');
 Route::get('userslist','UsersController@userslist')->middleware('auth');
 Route::get('edituser/{id}', 'UsersController@edituser')->middleware('auth');
@@ -50,13 +51,13 @@ Route::get('user_delete/{id}', 'UsersController@user_delete')->middleware('auth'
 // Route::get('addcustomers', function () {
 //     return view('customers/addcustomers');
 // });
-Route::get('addcustomers', 'CustomerController@addcustomers');
-Route::post('/addcustomer', 'CustomerController@addcutomer');
-Route::get('managecustomers','CustomerController@managecustomers');
-Route::get('editcustomer/{id}', 'CustomerController@editcustomer');
-Route::post('updatecustomer','CustomerController@updatecustomer');
-Route::get('customer_diactivate/{id}', 'CustomerController@customer_diactivate');
-Route::get('customer_activate/{id}', 'CustomerController@customer_activate');
+Route::get('addcustomers', 'CustomerController@addcustomers')->middleware('auth');
+Route::post('/addcustomer', 'CustomerController@addcutomer')->middleware('auth');
+Route::get('managecustomers','CustomerController@managecustomers')->middleware('auth');
+Route::get('editcustomer/{id}', 'CustomerController@editcustomer')->middleware('auth');
+Route::post('updatecustomer','CustomerController@updatecustomer')->middleware('auth');
+Route::get('customer_diactivate/{id}', 'CustomerController@customer_diactivate')->middleware('auth');
+Route::get('customer_activate/{id}', 'CustomerController@customer_activate')->middleware('auth');
 
 
 Route::get('jsonOupt','CustomerController@jsonOupt')->middleware('auth');
@@ -92,12 +93,12 @@ Route::post('saveshoploaction', 'LocationController@saveshoploaction')->middlewa
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 
-Route::get('creategroup','GroupController@creategroup');
-Route::get('managegroup','GroupController@managegroup');
-Route::post('addgroup', 'GroupController@addgroup');
+Route::get('creategroup','GroupController@creategroup')->middleware('auth');
+Route::get('managegroup','GroupController@managegroup')->middleware('auth');
+Route::post('addgroup', 'GroupController@addgroup')->middleware('auth');
 
 
 
