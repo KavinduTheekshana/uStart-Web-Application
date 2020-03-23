@@ -24,5 +24,7 @@ Route::get('checkLogin','auth\LoginController@checkLogin');
 
 
 Route::get('getProfileDetails','UsersController@getProfileDetails');
-
 Route::get('profileUpdate','ProfileController@postProfileUpdate');
+
+Route::get('currentPassword','auth\LoginController@currentPassword');
+Route::get('updatePasswordMobile','auth\LoginController@updatePasswordMobile');

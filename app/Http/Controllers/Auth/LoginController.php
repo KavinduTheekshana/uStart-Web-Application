@@ -97,4 +97,70 @@ class LoginController extends Controller
 
         return json_encode($JsonArray);
     }
+
+
+
+
+
+    public function currentPassword(Request $request){
+        $JsonArray=[];
+        if(isset($request->uid) && isset($request->password) && $request->uid!="" &&  $request->password!=""){
+            $user = DB::table('users')->where('id','=', $request->uid)->first();  
+            if($user!=null){
+                if($user->password==Hash::check($request->password, $user->password)){
+                    $JsonArray['code']='1';
+                    $JsonArray['msg']='Correct Password';  
+                }else{
+                    $JsonArray['code']='0';
+                    $JsonArray['msg']='Current Password is Incorrect';      
+                }
+            
+            }else{
+                $JsonArray['code']='0';
+                $JsonArray['msg']='Not Found Use By That Username';              
+            }
+        }else{
+            $JsonArray['result']='error';
+            $JsonArray['code']='0';
+        }
+
+        return json_encode($JsonArray);
+    }
+
+
+    public function updatePasswordMobile(Request $request){ 
+        $userid=utf8_decode($request->uid);
+        $password=utf8_decode($request->password);
+        $confirm_password=utf8_decode($request->confirm_password);
+
+        $JsonArray=[];
+        if(isset($request->password) && isset($request->confirm_password) && $request->password!="" &&  $request->confirm_password!=""){     
+            $user = DB::table('users')->where('id','=', $request->uid)->get();  
+            if($user!=null){
+                if($password == $confirm_password){
+                    $hashpassword = Hash::make($password);
+                    $data=array(
+                        'password' => $hashpassword,
+                      );
+                      user::where('id',$userid)->update($data);
+                      $JsonArray['code']='1';
+                      $JsonArray['msg']='Your password has been updated!';
+                }else{
+                    $JsonArray['code']='0';
+                    $JsonArray['msg']='Your password and confirmation password are not match!';
+                }
+            
+            }else{
+                              
+            }
+        }else{
+            $JsonArray['code']='0';
+            $JsonArray['result']='error';   
+        }
+
+        return json_encode($JsonArray);
+    }
+
+
+
 }
