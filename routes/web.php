@@ -102,6 +102,9 @@ Route::post('addgroup', 'GroupController@addgroup')->middleware('auth');
 
 
 
+//attendence
+Route::get('dailyatendence','AttendenceController@dailyatendence')->middleware('auth');
+Route::get('monthlyattendence','AttendenceController@monthlyattendence')->middleware('auth');
 
 
 

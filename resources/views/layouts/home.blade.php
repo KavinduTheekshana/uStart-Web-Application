@@ -217,6 +217,18 @@
                 </li>
 
 
+                <li>
+                    <a href="javascript: void(0);"><i class="far fa-address-card"></i><span>Attendence</span><span
+                            class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li class="nav-item"><a class="nav-link" href="{{ url('dailyatendence') }}"><i
+                                    class="ti-control-record"></i>Daily</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('monthlyattendence') }}"><i
+                                    class="ti-control-record"></i>Monthly</a></li>
+                    </ul>
+                </li>
+
+
                 {{-- <li>
                         <a href="javascript: void(0);"><i class="ti-layers-alt"></i><span>Category</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">

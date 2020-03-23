@@ -17,7 +17,7 @@ class AdminMiddleware
     {
         if(auth()->user()==null){
             return redirect()->route('logout');
-        }else if(auth()->user()->user_type == 0){
+        }else if(auth()->user()->user_type == 0 && auth()->user()->status == true){
             return $next($request);
         }else{
             return redirect()->route('logout');

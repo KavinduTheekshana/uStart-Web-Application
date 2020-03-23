@@ -109,5 +109,52 @@ class ProfileController extends Controller
 }
 
 
+public function postProfileUpdate(Request $request){
+  if(isset($request->uid) && $request->uid!=""){
+    $userid=utf8_decode($request->uid);
+    $name=utf8_decode($request->name);
+    $tel=utf8_decode($request->tel);
+    $address=utf8_decode($request->address);
+
+   
+
+
+    $data=array(
+      'name' => $name,
+      'telephone'=>$tel,
+      'address'=>$address,
+    );
+    user::where('id',$userid)->update($data);
+
+
+    //  $data=[];
+
+    //  if($request->name!=""){
+    //   $data['name']=$request->name;
+    //  }
+
+    //  if($request->name!=""){
+    //   $data['telephone']=$request->tel;
+    //  }
+
+    //  if($request->name!=""){
+    //   $data['address']=$request->address;
+    //  }
+
+    //  user::where('id',$userid)->update($data);
+    //  $users->update();  
+
+    $data=array(
+      "code"=>1,
+      "message"=>"Profile Updated"
+    );
+  }else{
+    $data=array(
+      "code"=>0,
+      "message"=>"error"
+    );
+  }
+  return response()->json($data, 200);
+}
 
 }

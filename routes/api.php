@@ -24,3 +24,5 @@ Route::get('checkLogin','auth\LoginController@checkLogin');
 
 
 Route::get('getProfileDetails','UsersController@getProfileDetails');
+
+Route::get('profileUpdate','ProfileController@postProfileUpdate');
