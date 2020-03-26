@@ -50,4 +50,26 @@ class ProductController extends Controller
         $products = DB::table('products')->get(); 
         return view('products/manageproduct',['products'=>$products,'authprofile'=>$authprofile]);
       }
+
+
+
+
+      public function getProductList(){
+        $JsonArray=[];
+ 
+            $JsonArray = DB::table('products')->get();  
+            // if($products!=null){
+            //     $JsonArray['code']='1';
+            //     $JsonArray['products']=$products;
+            //   }else{
+            //      $JsonArray['code']='';
+            //   }
+                
+        return json_encode($JsonArray);
+    }
+
+
+    
+    
+
 }

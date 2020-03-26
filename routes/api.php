@@ -28,3 +28,5 @@ Route::get('profileUpdate','ProfileController@postProfileUpdate');
 
 Route::get('currentPassword','auth\LoginController@currentPassword');
 Route::get('updatePasswordMobile','auth\LoginController@updatePasswordMobile');
+
+Route::get('getProductList','ProductController@getProductList');
