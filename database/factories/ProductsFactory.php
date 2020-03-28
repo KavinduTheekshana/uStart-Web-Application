@@ -23,6 +23,7 @@ $factory->define(Products::class, function (Faker $faker) {
         'number_of_pcs' => $faker->numberBetween($min = 100, $max = 1500),
         'product_price' => $faker->numberBetween($min = 700, $max = 9600),
         'product_image' => "uploads/products/default.jpg",
-        'status' => $faker->boolean,        
+        'status' => $faker->boolean,       
+        'description' => $faker->text($maxNbChars = 200),
     ];
 });

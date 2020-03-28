@@ -29,7 +29,7 @@
 
 
         <div class="row">
-            @foreach($customer_groups as $customer_group)
+            {{-- @foreach($customer_groups as $customer_group) --}}
             <div class="col-lg-3">
 
 
@@ -38,7 +38,7 @@
                 <div class="card team-card">
                     <div class="card-body">
                         <div class=" d-flex justify-content-between">
-                            <h4 class="header-title mt-0 d-inline-block">Group ID : {{$customer_group->id}} </h4>
+                            <h4 class="header-title mt-0 d-inline-block">Group ID : </h4>
                             <div class="dropdown d-inline-block">
                                 <a class="nav-link dropdown-toggle arrow-none" id="dLabel1" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v font-20 text-muted"></i>
@@ -88,7 +88,7 @@
 
 
             </div><!--end col-->
-            @endforeach
+            {{-- @endforeach --}}
  
         </div><!--end row-->
 

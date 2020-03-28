@@ -22,6 +22,7 @@ class ProductController extends Controller
           'category_id'=>['required'],
           'number_of_pcs' => ['required'],
           'product_price' => ['required'],
+          'description' => ['required'],
          ]);
   
          $products = new products();
@@ -30,6 +31,7 @@ class ProductController extends Controller
          $products->number_of_pcs = $request->input('number_of_pcs');
          $products->product_price = $request->input('product_price');
          $products->status = '1';
+         $products->description = $request->input('description');
 
          if ($request->hasFile('product_image')) {
               $image = $request->file('product_image') ;
@@ -57,13 +59,7 @@ class ProductController extends Controller
       public function getProductList(){
         $JsonArray=[];
  
-            $JsonArray = DB::table('products')->get();  
-            // if($products!=null){
-            //     $JsonArray['code']='1';
-            //     $JsonArray['products']=$products;
-            //   }else{
-            //      $JsonArray['code']='';
-            //   }
+            $JsonArray = DB::table('products')->orderBy('name', 'asc')->get();  
                 
         return json_encode($JsonArray);
     }

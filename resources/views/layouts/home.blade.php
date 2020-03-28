@@ -312,6 +312,10 @@
 
 
 
+<!--Wysiwig js-->
+<script src="../assets/plugins/tinymce/tinymce.min.js"></script>
+<script src="../assets/pages/jquery.form-editor.init.js"></script> 
+
 
 </body>
 

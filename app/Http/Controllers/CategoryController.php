@@ -59,4 +59,28 @@ class CategoryController extends Controller
         $task->save();
        return redirect()->back()->with('Categories_activate_status', 'Category Was Activated Sucessfully');;
       }
+
+
+      
+      public function getCategoryList(){
+        $JsonArray=[];
+ 
+            $JsonArray = DB::table('categories')->orderBy('name', 'asc')->get();  
+                
+        return json_encode($JsonArray);
+    }
+
+
+
+    public function getCategoryName(Request $request){
+
+      $JsonArray=[];
+
+          // $JsonArray['categorie']=DB::table('categories')->where(['id'=>$request->id])->first();  
+          $JsonArray=DB::table('categories')->where(['id'=>$request->id])->first();  
+
+      return json_encode($JsonArray);
+  }
+
+
 }

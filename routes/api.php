@@ -30,3 +30,5 @@ Route::get('currentPassword','auth\LoginController@currentPassword');
 Route::get('updatePasswordMobile','auth\LoginController@updatePasswordMobile');
 
 Route::get('getProductList','ProductController@getProductList');
+Route::get('getCategoryList','CategoryController@getCategoryList');
+Route::get('getCategoryName','CategoryController@getCategoryName');

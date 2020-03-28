@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('category_id');
             $table->integer('number_of_pcs');
             $table->integer('product_price');
+            $table->string('description');
             $table->string('product_image');
             $table->boolean('status')->default(1);
             $table->timestamps();

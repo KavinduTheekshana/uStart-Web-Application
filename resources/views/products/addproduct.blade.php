@@ -109,17 +109,21 @@
                                     </div>
                                 </div>
 
-
-
-
-
-
-
-
-
                             </div>
 
                         </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form method="post">
+                                    <label for="example-url-input"
+                                    class="col-form-label">Description</label>
+                                    <textarea id="elm1" name="description"></textarea>
+                                </form> 
+                            </div>
+                        </div>
+                        <br>
                         <div class="row">
                             <div class="col-sm-12 text-right">
                                 <button type="reset" class="btn btn-gradient-danger px-5 py-2">Cancel</button>

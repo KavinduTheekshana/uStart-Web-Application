@@ -13,10 +13,16 @@ class GroupController extends Controller
     public function managegroup(){  
         $id =Auth::user()->id;
         $authprofile = DB::table('users')->where(['id'=>$id])->first();
+
+        
+        $CustomerGroupsArray=[];
+
+
         // $customer_groups = DB::table('customer_groups')->join('users', 'customer_groups.customer_id', '=', 'users.id')->groupBy('customer_groups.user_id')->get();
-        $customer_groups = DB::table('customer_groups')->groupBy('customer_groups.user_id')->join('users', 'customer_groups.customer_id', '=', 'users.id')->select(['customer_groups.user_id','users.name'])->get();
-        return $customer_groups;
-        return view('groups/managegeoups',['customer_groups'=>$customer_groups,'authprofile'=>$authprofile]);
+        $CustomerGroupsArray['users'] = DB::table('customer_groups')
+        ->leftJoin('users', 'customer_groups.customer_id', '=', 'users.id')->get();
+        return $CustomerGroupsArray;
+        return view('groups/managegeoups',['authprofile'=>$authprofile]);
       }
 
       public function creategroup(){
