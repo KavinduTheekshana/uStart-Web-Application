@@ -21,7 +21,7 @@ class GroupController extends Controller
         // $customer_groups = DB::table('customer_groups')->join('users', 'customer_groups.customer_id', '=', 'users.id')->groupBy('customer_groups.user_id')->get();
         $CustomerGroupsArray['users'] = DB::table('customer_groups')
         ->leftJoin('users', 'customer_groups.customer_id', '=', 'users.id')->get();
-        return $CustomerGroupsArray;
+        // return $CustomerGroupsArray;
         return view('groups/managegeoups',['authprofile'=>$authprofile]);
       }
 

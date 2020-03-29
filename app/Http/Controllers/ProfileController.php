@@ -125,24 +125,7 @@ public function postProfileUpdate(Request $request){
       'address'=>$address,
     );
     user::where('id',$userid)->update($data);
-
-
-    //  $data=[];
-
-    //  if($request->name!=""){
-    //   $data['name']=$request->name;
-    //  }
-
-    //  if($request->name!=""){
-    //   $data['telephone']=$request->tel;
-    //  }
-
-    //  if($request->name!=""){
-    //   $data['address']=$request->address;
-    //  }
-
-    //  user::where('id',$userid)->update($data);
-    //  $users->update();  
+ 
 
     $data=array(
       "code"=>1,
