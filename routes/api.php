@@ -35,3 +35,8 @@ Route::get('getCategoryList','CategoryController@getCategoryList');
 Route::get('getCategoryName','CategoryController@getCategoryName');
 
 Route::get('CreateCart','CartsController@CreateCart');
+Route::get('getCartItemList','CartsController@getCartItemList');
+Route::get('DeleteCartItem','CartsController@DeleteCartItem');
+
+
+Route::get('RepGetCustomers','GroupController@RepGetCustomers');

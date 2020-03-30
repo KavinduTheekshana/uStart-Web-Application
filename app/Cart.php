@@ -34,5 +34,15 @@ class Cart extends Model
         );
         return $id;
     }
+
+    function GetDetailsForMobilecart($user_id){
+        $date = Cart::where('user_id', $user_id)->get();
+        return $date;
+    }
+
+    function DeleteCartItem($cartId){
+        $delete = Cart::where('id', $cartId)->delete();
+        return $delete;
+    }
    
 }

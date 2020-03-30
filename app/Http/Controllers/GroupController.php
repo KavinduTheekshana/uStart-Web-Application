@@ -50,8 +50,27 @@ class GroupController extends Controller
       }
 
       return redirect()->back()->with('customer_create_status', 'Group Created Sucessfully');
-      
-        
+ 
+   
+    }
+
+
+    public function RepGetCustomers(Request $request){
+      $repid = utf8_decode($request->repid);
+
+      $customerDate = DB::table('customer_groups')
+            ->join('users', 'customer_groups.customer_id', '=', 'users.id')
+            ->join('customer_locations', 'customer_groups.customer_id', '=', 'customer_locations.customer_id')
+            ->where('customer_groups.user_id', $repid)
+            ->select('customer_groups.id as id','users.name as name',
+            'users.address as address','users.shop_name as shopname','users.email as email',
+            'users.telephone as telephone','users.province as province',
+            'users.district as district','users.city as city',
+            'users.joined_date as joined_date','users.profile_pic as profile_pic',
+            'customer_locations.address as gooogleaddress','customer_locations.lat as lat','customer_locations.lng as lng')
+            ->get();
+
+      return $customerDate;
     }
 
 

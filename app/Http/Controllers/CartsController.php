@@ -23,51 +23,32 @@ class CartsController extends Controller
       }else{
         $AddCartDate = $model->AddCartDate($user_id,$user_type,$product_id,$qty);
       }
+  }
+
+
+  public function getCartItemList(Request $request){
+
+    $user_id = utf8_decode($request->uid);
+
+    $GetDetailsForMobilecart = DB::table('carts')
+            ->join('products', 'carts.product_id', '=', 'products.id')
+            ->where('carts.user_id', $user_id)
+            ->select('carts.id as id','products.name as title','products.product_price as price','carts.qty as qty','products.product_image as image')
+            ->get();
+
   
-
-
-
-
-
-
-
-
-
-
-      // $isAvailable = DB::table('carts')->where([['user_id',"=",$user_id],['user_type',"=",$user_type],['product_id',"=",$product_id],['availabeforcart',"=","1"]])->get();
-      // $isAvailable = DB::table('carts')->where([['user_id',"=",$user_id],['user_type',"=",$user_type],['product_id',"=",$product_id],['availabeforcart',"=","1"]])->select('qty')->get();
-      // if($isAvailable!=null){
-      //   $newint = $isAvailable +5;
-      //   var_dump($isAvailable);die();
-      //   return $newint;
-
-      // }
-
-      //   if(isset($request->userid) && $request->userid!=""){
-         
-      //     $Cart = new Cart();
-      //     $Cart->$user_id;
-      //     $Cart->$user_type;
-      //     $Cart->$product_id;
-      //     $Cart->$qty;
-      //     $Cart->save();
-
-
-
-      //     $data=array(
-      //       "code"=>1,
-      //       "message"=>"Your Item Is Added to cart"
-      //     );
-
-
-      //   }else{
-      //     $data=array(
-      //       "code"=>0,
-      //       "message"=>"error"
-      //     );
-          
-      //   }
-      //   return response()->json($data, 200);
-      // }
+            return $GetDetailsForMobilecart;
 }
+
+
+public function DeleteCartItem(Request $request){
+
+  $cartId = utf8_decode($request->cartid);
+
+  $model = new Cart();
+  $deleteCartItem = $model->DeleteCartItem($cartId);
+  return $deleteCartItem;
+
+  }
+
 }
