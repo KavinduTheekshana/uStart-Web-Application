@@ -33,6 +33,7 @@ class CartsController extends Controller
     $GetDetailsForMobilecart = DB::table('carts')
             ->join('products', 'carts.product_id', '=', 'products.id')
             ->where('carts.user_id', $user_id)
+            ->where('carts.availabeforcart', 1)
             ->select('carts.id as id','products.name as title','products.product_price as price','carts.qty as qty','products.product_image as image')
             ->get();
 
@@ -50,5 +51,23 @@ public function DeleteCartItem(Request $request){
   return $deleteCartItem;
 
   }
+
+  public function OrderNowMobile(Request $request){
+
+    $uid = utf8_decode($request->uid);
+    $model = new Cart();
+    $markaspublic = $model->OrderNowMobile($uid);
+    return $markaspublic;
+  
+    }
+
+    public function SingleCustomerOrderdItems(Request $request){
+
+      $customerid = utf8_decode($request->customerid);
+      $model = new Cart();
+      $singlecustomerorders = $model->SingleCustomerOrderdItems($customerid);
+      return $singlecustomerorders;
+    
+      }
 
 }

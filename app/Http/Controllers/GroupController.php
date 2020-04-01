@@ -62,7 +62,7 @@ class GroupController extends Controller
             ->join('users', 'customer_groups.customer_id', '=', 'users.id')
             ->join('customer_locations', 'customer_groups.customer_id', '=', 'customer_locations.customer_id')
             ->where('customer_groups.user_id', $repid)
-            ->select('customer_groups.id as id','users.name as name',
+            ->select('users.id as id','users.name as name',
             'users.address as address','users.shop_name as shopname','users.email as email',
             'users.telephone as telephone','users.province as province',
             'users.district as district','users.city as city',

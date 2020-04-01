@@ -21,6 +21,7 @@ class CreateCartsTable extends Migration
             $table->integer('qty');
             $table->boolean('availabeforcart')->default(1);
             $table->boolean('availabeforpublic')->default(0);
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
