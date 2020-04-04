@@ -70,4 +70,15 @@ public function DeleteCartItem(Request $request){
     
       }
 
+
+
+      public function MarkOrderItemIsComplete(Request $request){
+
+        $productid = utf8_decode($request->productid);
+        $model = new Cart();
+        $MarkAsComplete = $model->MarkAsComplete($productid);
+        return $MarkAsComplete;
+      
+        }
+
 }

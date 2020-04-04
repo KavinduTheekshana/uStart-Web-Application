@@ -39,6 +39,7 @@ Route::get('getCartItemList','CartsController@getCartItemList');
 Route::get('DeleteCartItem','CartsController@DeleteCartItem');
 Route::get('OrderNowMobile','CartsController@OrderNowMobile');
 Route::get('SingleCustomerOrderdItems','CartsController@SingleCustomerOrderdItems');
+Route::get('MarkOrderItemIsComplete','CartsController@MarkOrderItemIsComplete');
 
 
 Route::get('RepGetCustomers','GroupController@RepGetCustomers');

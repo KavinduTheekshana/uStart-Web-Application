@@ -60,13 +60,28 @@ class Cart extends Model
         //     SELECT user_id,product_id,SUM(qty) as qty FROM carts WHERE user_id=\"{$customerid}\" GROUP BY product_id,user_id
         //         ) as sub"));
 
-        $data = DB::select(DB::raw("select * from (
-            SELECT products.name,products.product_price,SUM(carts.qty) as qty,products.product_image FROM carts INNER JOIN products ON carts.product_id=products.id
-             WHERE carts.user_id=\"{$customerid}\" GROUP BY carts.product_id,products.name,products.product_price,products.product_image
-                ) as sub"));
+        // $data = DB::select(DB::raw("select * from (
+        //     SELECT carts.id,products.name,products.product_price,SUM(carts.qty) as qty,products.product_image FROM carts INNER JOIN products ON carts.product_id=products.id
+        //      WHERE carts.user_id=\"{$customerid}\" GROUP BY carts.product_id,products.name,products.product_price,products.product_image,carts.id
+        //         ) as sub"));
+
+
+                $data = DB::select(DB::raw("select * from (
+                    SELECT carts.product_id,products.name,products.product_price,SUM(carts.qty) as qty,products.product_image,users.profile_pic as userProfileImage
+                    FROM carts INNER JOIN products ON carts.product_id=products.id INNER JOIN users ON carts.user_id=users.id
+                     WHERE carts.user_id=\"{$customerid}\" AND carts.status = 0 AND carts.availabeforpublic = 1
+                     GROUP BY carts.product_id,products.name,products.product_price,products.product_image,carts.status,carts.availabeforpublic,users.profile_pic
+                        ) as sub"));
         return $data;
 
+    }
 
+
+
+
+    function MarkAsComplete($productid){
+        $data =Cart::where('product_id', $productid)->update(['status' => 1]);
+        return $data;
     }
    
 }
