@@ -41,5 +41,9 @@ Route::get('OrderNowMobile','CartsController@OrderNowMobile');
 Route::get('SingleCustomerOrderdItems','CartsController@SingleCustomerOrderdItems');
 Route::get('MarkOrderItemIsComplete','CartsController@MarkOrderItemIsComplete');
 
+Route::get('verificationcode','Auth\ResetPasswordController@verificationcode');
+Route::get('checkverificationcode','auth\ResetPasswordController@checkverificationcode');
+Route::get('resetpasswordmobile','auth\ResetPasswordController@resetpasswordmobile');
+
 
 Route::get('RepGetCustomers','GroupController@RepGetCustomers');

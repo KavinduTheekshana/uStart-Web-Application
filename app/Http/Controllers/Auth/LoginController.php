@@ -58,6 +58,7 @@ class LoginController extends Controller
                         $JsonArray['msg']='Welcome customer';
                     }else{
                         $JsonArray['code']='3';
+                        $JsonArray['msg']='Your Blocked';
                     }
                 }else{
                     $JsonArray['code']='0';
@@ -69,7 +70,7 @@ class LoginController extends Controller
                 $JsonArray['msg']='Not Found Use By That Username';              
             }
         }else{
-            $JsonArray['result']='error';
+            $JsonArray['result']='Please Fill The Email and password';
             $JsonArray['code']='0';
         }
 
