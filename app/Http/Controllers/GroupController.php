@@ -14,15 +14,19 @@ class GroupController extends Controller
         $id =Auth::user()->id;
         $authprofile = DB::table('users')->where(['id'=>$id])->first();
 
+        $info = DB::table('customer_groups')
+      ->join('users as cus', 'customer_groups.customer_id', '=', 'cus.id')
+      ->join('users as sels', 'customer_groups.user_id', '=', 'sels.id')
+      ->select('sels.id as selsid','sels.name as selsname','sels.profile_pic as selsprofilepic',
+      'cus.name as cusname','cus.profile_pic as cusprofilepic')->get()->groupBy(['selsname','selsprofilepic']);
         
-        $CustomerGroupsArray=[];
-
-
+        // $CustomerGroupsArray=[];
         // $customer_groups = DB::table('customer_groups')->join('users', 'customer_groups.customer_id', '=', 'users.id')->groupBy('customer_groups.user_id')->get();
-        $CustomerGroupsArray['users'] = DB::table('customer_groups')
-        ->leftJoin('users', 'customer_groups.customer_id', '=', 'users.id')->get();
+        // $CustomerGroupsArray['users'] = DB::table('customer_groups')
+        // ->leftJoin('users', 'customer_groups.customer_id', '=', 'users.id')->get();
         // return $CustomerGroupsArray;
-        return view('groups/managegeoups',['authprofile'=>$authprofile]);
+
+        return view('groups/managegeoups',['authprofile'=>$authprofile,'info'=>$info]);
       }
 
       public function creategroup(){
@@ -73,5 +77,13 @@ class GroupController extends Controller
       return $customerDate;
     }
 
+    public function group(){
+      $info = DB::table('customer_groups')
+      ->join('users as cus', 'customer_groups.customer_id', '=', 'cus.id')
+      ->join('users as sels', 'customer_groups.user_id', '=', 'sels.id')
+      ->select('sels.id as selsid','sels.name as selsname','sels.profile_pic as selsprofilepic',
+      'cus.name as cusname','cus.profile_pic as cusprofilepic')->get()->groupBy(['selsname','selsprofilepic']);
+      return $info;
+    }
 
 }

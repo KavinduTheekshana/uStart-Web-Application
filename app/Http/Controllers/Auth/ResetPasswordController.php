@@ -76,8 +76,6 @@ class ResetPasswordController extends Controller
             $JsonArray['code']='0';
             $JsonArray['msg']='Invalid Verification Code';
         }
-
-
          return json_encode($JsonArray);
     }
 

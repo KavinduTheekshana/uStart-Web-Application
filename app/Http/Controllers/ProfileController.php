@@ -110,12 +110,24 @@ class ProfileController extends Controller
 
 
 public function postProfileUpdate(Request $request){
+
   if(isset($request->uid) && $request->uid!=""){
+
     $userid=utf8_decode($request->uid);
     $name=utf8_decode($request->name);
     $tel=utf8_decode($request->tel);
     $address=utf8_decode($request->address);
 
+
+    $decodedImage = base64_decode(($request->image));
+            if(isset($request->image)){
+                $UserImage = 'uploads/profile_pic/'. date('YmdHis').".jpg";
+                file_put_contents($UserImage, $decodedImage);
+            }
+
+            $user = DB::table('users')->where('id','=', $userid)->update(['profile_pic'=>$UserImage]); 
+
+   
    
 
 
