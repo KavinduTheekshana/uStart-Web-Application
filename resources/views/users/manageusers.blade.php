@@ -91,7 +91,6 @@
 
                         <a href="edituser/{{$user->id}}" type="button" class="btn btn-sm btn-gradient-primary">&nbsp;
                             &nbsp; Edit &nbsp; &nbsp; </a>
-                        <button type="button" class="btn btn-sm btn-gradient-warning">Message</button>
                     </div>
                     <!--end card-body-->
                 </div>

@@ -111,11 +111,13 @@
                 <li class="dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown"
                         href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="{{$authprofile->profile_pic}}" alt="profile-user" class="rounded-circle" />
-                <span class="ml-1 nav-user-name hidden-sm">{{$authprofile->name}}<i class="mdi mdi-chevron-down"></i> </span>
+                        <img src="{{asset($authprofile->profile_pic)}}" alt="profile-user" class="rounded-circle" />
+                        <span class="ml-1 nav-user-name hidden-sm">{{$authprofile->name}}<i
+                                class="mdi mdi-chevron-down"></i> </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="profile"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
+                        <a class="dropdown-item" href="profile"><i class="dripicons-user text-muted mr-2"></i>
+                            Profile</a>
                         <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted mr-2"></i> Lock screen</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout"><i class="dripicons-exit text-muted mr-2"></i> Logout</a>
@@ -213,6 +215,8 @@
                                     class="ti-control-record"></i>Create Group</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('managegroup') }}"><i
                                     class="ti-control-record"></i>Manage Groups</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('grouplist') }}"><i
+                                    class="ti-control-record"></i>Groups List</a></li>
                     </ul>
                 </li>
 
@@ -228,6 +232,11 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="{{ url('cart') }}"><i class="ti-shopping-cart-full"></i><span>Cart</span></a>
+                </li>
+
+        
 
                 {{-- <li>
                         <a href="javascript: void(0);"><i class="ti-layers-alt"></i><span>Category</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
@@ -239,9 +248,9 @@
 
 
 
-          
 
-            
+
+
 
             </ul>
         </div>
@@ -312,9 +321,9 @@
 
 
 
-<!--Wysiwig js-->
-<script src="../assets/plugins/tinymce/tinymce.min.js"></script>
-<script src="../assets/pages/jquery.form-editor.init.js"></script> 
+    <!--Wysiwig js-->
+    <script src="../assets/plugins/tinymce/tinymce.min.js"></script>
+    <script src="../assets/pages/jquery.form-editor.init.js"></script>
 
 
 </body>

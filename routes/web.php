@@ -36,7 +36,6 @@ Route::post('changePassword', 'ProfileController@changePassword')->middleware('a
 
 
 
-
 Route::get('addusers','UsersController@addusers')->middleware('auth');
 Route::post('/adduser', 'UsersController@adduser')->middleware('auth');
 Route::get('manageusers','UsersController@manageusers')->middleware('auth');
@@ -99,6 +98,8 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('creategroup','GroupController@creategroup')->middleware('auth');
 Route::get('managegroup','GroupController@managegroup')->middleware('auth');
 Route::post('addgroup', 'GroupController@addgroup')->middleware('auth');
+Route::get('grouplist', 'GroupController@grouplist')->middleware('auth');
+Route::get('deletecustomergroup/{id}', 'GroupController@deletecustomergroup')->middleware('auth');
 
 
 
@@ -107,6 +108,12 @@ Route::get('dailyatendence','AttendenceController@dailyatendence')->middleware('
 Route::get('monthlyattendence','AttendenceController@monthlyattendence')->middleware('auth');
 
 Route::get('group','GroupController@group');
+
+
+//cart web
+Route::get('cart','CartsController@cart');
+Route::get('cartitem/{id}','CartsController@cartitem');
+Route::get('MarkCartItemIsComplete/{id}','CartsController@MarkCartItemIsComplete');
 
 
 

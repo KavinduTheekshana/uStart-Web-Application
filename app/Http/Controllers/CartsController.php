@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cart;
 use DB;
+use Auth;
 
 class CartsController extends Controller
 {
@@ -80,5 +81,36 @@ public function DeleteCartItem(Request $request){
         return $MarkAsComplete;
       
         }
+
+
+
+        public function cart(){
+          $id =Auth::user()->id;
+          $authprofile = DB::table('users')->where(['id'=>$id])->first();
+          $reps = DB::table('users')->where(['user_type'=>1])->get();
+          return view('cart/cart',['reps'=>$reps,'authprofile'=>$authprofile]);
+        }
+
+        public function cartitem($ids){
+          $id =Auth::user()->id;
+          $authprofile = DB::table('users')->where(['id'=>$id])->first();
+          $orders = DB::select(DB::raw("select * from (
+            SELECT carts.product_id,products.name,products.product_price,SUM(carts.qty) as qty,products.product_image,users.profile_pic as userProfileImage
+            FROM carts INNER JOIN products ON carts.product_id=products.id INNER JOIN users ON carts.user_id=users.id
+             WHERE carts.user_id=\"{$ids}\" AND carts.status = 0 AND carts.availabeforpublic = 1
+             GROUP BY carts.product_id,products.name,products.product_price,products.product_image,carts.status,carts.availabeforpublic,users.profile_pic
+                ) as sub"));
+
+                // return $orders;
+          return view('cart/cartitem',['orders'=>$orders,'authprofile'=>$authprofile]);
+        }
+
+        public function MarkCartItemIsComplete($productid){
+
+          $model = new Cart();
+          $MarkAsComplete = $model->MarkAsComplete($productid);
+          return redirect()->back()->with('status', 'New User Added Sucessfully');
+        
+          }
 
 }

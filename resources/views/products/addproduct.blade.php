@@ -77,14 +77,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="example-email-input" class="col-sm-2 col-form-label text-right">Number
-                                        of Pcs</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="number" placeholder="1500" name="number_of_pcs"
-                                            id="example-email-input">
-                                    </div>
-                                </div>
+                         
 
                                 <div class="form-group row">
                                     <label for="example-search-input"

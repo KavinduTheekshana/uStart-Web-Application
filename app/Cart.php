@@ -79,6 +79,7 @@ class Cart extends Model
 
 
 
+
     function MarkAsComplete($productid){
         $data =Cart::where('product_id', $productid)->update(['status' => 1]);
         return $data;

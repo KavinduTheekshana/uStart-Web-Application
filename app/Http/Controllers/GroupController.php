@@ -32,7 +32,7 @@ class GroupController extends Controller
       public function creategroup(){
         $id =Auth::user()->id;
         $authprofile = DB::table('users')->where(['id'=>$id])->first();
-        $users = DB::table('users')->where([['user_type','=', '1'],['group_status','=', '0']])->get();
+        $users = DB::table('users')->where([['user_type','=', '1']])->get();
         $customers = Customer::whereGroupStatus(0)->get();
         return view('groups/creategroup',['users'=>$users,'customers'=>$customers,'authprofile'=>$authprofile]);
       }
@@ -78,12 +78,49 @@ class GroupController extends Controller
     }
 
     public function group(){
+      // $info = DB::table('customer_groups')
+      // ->join('users as cus', 'customer_groups.customer_id', '=', 'cus.id')
+      // ->join('users as sels', 'customer_groups.user_id', '=', 'sels.id')
+      // ->select('sels.id as selsid','sels.name as selsname','sels.profile_pic as selsprofilepic',
+      // 'cus.name as cusname','cus.profile_pic as cusprofilepic')->get()->groupBy(['selsid']);
+
       $info = DB::table('customer_groups')
       ->join('users as cus', 'customer_groups.customer_id', '=', 'cus.id')
       ->join('users as sels', 'customer_groups.user_id', '=', 'sels.id')
-      ->select('sels.id as selsid','sels.name as selsname','sels.profile_pic as selsprofilepic',
-      'cus.name as cusname','cus.profile_pic as cusprofilepic')->get()->groupBy(['selsname','selsprofilepic']);
+      ->select('customer_groups.id as id','sels.id as selsid','sels.name as selsname','sels.profile_pic as selsprofilepic',
+      'cus.name as cusname','cus.profile_pic as cusprofilepic',
+      'cus.city as cuscity','cus.status as cusstatus')->orderby('selsid')->get();
+
+
       return $info;
+    }
+
+
+    public function grouplist(){  
+      $id =Auth::user()->id;
+      $authprofile = DB::table('users')->where(['id'=>$id])->first();
+
+      $info = DB::table('customer_groups')
+      ->join('users as cus', 'customer_groups.customer_id', '=', 'cus.id')
+      ->join('users as sels', 'customer_groups.user_id', '=', 'sels.id')
+      ->select('customer_groups.id as id','sels.id as selsid','sels.name as selsname','sels.profile_pic as selsprofilepic',
+      'cus.name as cusname','cus.profile_pic as cusprofilepic',
+      'cus.city as cuscity','cus.status as cusstatus')->orderby('selsid')->get();
+      
+
+      return view('groups/grouplist',['authprofile'=>$authprofile,'info'=>$info]);
+    }
+
+    public function deletecustomergroup($id){
+      
+
+      $cusid = DB::table('customer_groups')->where('id', $id)->select('customer_id')->first();
+
+      DB::table('users')
+              ->where('id', $cusid->customer_id)
+              ->update(['group_status' => false]);
+              DB::table('customer_groups')->where('id', $id)->delete();
+      return redirect()->back();
     }
 
 }
