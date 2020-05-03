@@ -55,4 +55,43 @@ class LocationController extends Controller
          $task->save();
          return redirect('addlocation')->with('status', 'New Customer Location is Added Sucessfully');
       }
+
+
+      public function getlatandlng(Request $request){
+
+        $JsonArray=[];
+        $JsonArray=DB::table('customer_locations')->where(['customer_id'=>$request->id])->first();  
+  
+        return json_encode($JsonArray);
+    }
+
+
+    public function savecurrentlocation(Request $request){
+      $JsonArray=[];
+      if(isset($request->userid) && isset($request->dateString) && isset($request->timeString) && isset($request->lat) && isset($request->lng)){ 
+
+        $userid = $request->userid;
+        $dateString = $request->dateString;
+        $timeString = $request->timeString;
+        $lat = $request->lat;
+        $lng = $request->lng;
+
+
+        DB::table('daily_routes')->insert(
+          ['user_id' => $userid, 'date' => $dateString,'time' => $timeString,'lat' => $lat,'lng' => $lng,]
+      );
+
+
+      $JsonArray['code']='1';
+             
+          
+        
+      }else{
+          $JsonArray['code']='0';
+      }
+
+      return json_encode($JsonArray);
+
+
+  }
 }
