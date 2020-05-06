@@ -42,7 +42,7 @@
                         <div class="row ml-2">
                             <h4 class="mt-2 header-title">Select the Date What Do you want to Search
                                 &nbsp;&nbsp;&nbsp;&nbsp;</h4>
-                            <p class="mt-0 text-muted "><input class="form-control" type="date" value="2011-08-19"
+                            <p class="mt-0 text-muted "><input class="form-control" onchange="changeDate()" type="date" value="2020-05-05"
                                     id="example-date-input"></p>
                         </div>
 
@@ -64,53 +64,7 @@
                             </thead>
 
 
-                            <tbody>
-
-
-                                <tr>
-                                    <td>1</td>
-                                    <td>Tiger Nixon</td>
-                                    <td>17:30:00</td>
-                                    <td>17:30:00</td>
-                                    <td>00:00:00</td>
-                                    <td><span class="badge badge-md badge-success">Full Day</span></td>
-                                    <td>
-                                        <a href="" type="button"
-                                            class="btn btn-gradient-secondary  waves-effect waves-light"><i
-                                                class="fa fa-route" aria-hidden="true"></i></a>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td>2</td>
-                                    <td>Tiger Nixont</td>
-                                    <td>17:30:00</td>
-                                    <td>17:30:00</td>
-                                    <td>00:00:00</td>
-                                    <td><span
-                                        class="badge badge-md badge-danger">Leave</span></td>
-                                        <td>
-                                            <a href="" type="button"
-                                                class="btn btn-gradient-secondary  waves-effect waves-light"><i
-                                                    class="fa fa-route" aria-hidden="true"></i></a>
-                                        </td>
-                                </tr>
-
-                                <tr>
-                                    <td>2</td>
-                                    <td>Tiger Nixont</td>
-                                    <td>17:30:00</td>
-                                    <td>17:30:00</td>
-                                    <td>00:00:00</td>
-                                    <td><span
-                                        class="badge badge-md badge-warning">Half Day</span></td>
-                                        <td>
-                                            <a href="" type="button"
-                                                class="btn btn-gradient-secondary  waves-effect waves-light"><i
-                                                    class="fa fa-route" aria-hidden="true"></i></a>
-                                        </td>
-                                </tr>
+                            <tbody id="tcontent">
 
                             </tbody>
                         </table>
@@ -121,7 +75,70 @@
 
 
 
+        <script>
 
+            getData("");
+
+            function changeDate(){
+                getData(document.getElementById('example-date-input').value);
+            }
+
+            function getData(date){
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var arrayObj=JSON.parse(this.responseText);
+                        
+                        document.getElementById("tcontent").innerHTML="";
+                        if(arrayObj.length>0){
+                            for(var i=0;i<arrayObj.length;i++){
+                                var tr=document.createElement("tr");
+
+                                var jsonObj=arrayObj[i];
+
+                                var td1=document.createElement("td");
+                                var td2=document.createElement("td");
+                                var td3=document.createElement("td");
+                                var td4=document.createElement("td");
+                                var td5=document.createElement("td");
+                                var td6=document.createElement("td");
+                                var td7=document.createElement("td");
+                                
+                                td1.innerHTML=jsonObj.id;
+                                td2.innerHTML=jsonObj.user_id;
+                                td3.innerHTML=jsonObj.intime;
+                                td4.innerHTML=jsonObj.outtime;
+                                td5.innerHTML=jsonObj.duration;
+                                
+                                td6.innerHTML="<span class='badge badge-md badge-success'>"+jsonObj.duration+"</span>";
+                                td7.innerHTML="<a href='' type='button' class='btn btn-gradient-secondary  waves-effect waves-light'><i class='fa fa-route' aria-hidden='true'></i></a>";
+
+                                 tr.appendChild(td1); 
+                                 tr.appendChild(td2); 
+                                 tr.appendChild(td3); 
+                                 tr.appendChild(td4); 
+                                 tr.appendChild(td5); 
+                                 tr.appendChild(td6); 
+                                 tr.appendChild(td7); 
+                                 document.getElementById("tcontent").appendChild(tr);
+                            }
+                        }else{
+                            var tr=document.createElement("tr");
+                            var td=document.createElement("td");
+                            td.setAttribute("colspan","7");
+                            tr.innerHTML="No Records Found";
+                            tr.appendChild(td);
+                            document.getElementById("tcontent").appendChild(tr);
+                        }
+                        
+                    }
+                };
+
+                xhttp.open("POST", "attendencejs", false);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("_token={{ csrf_token() }}&date="+date);
+            }
+        </script>
 
 
 

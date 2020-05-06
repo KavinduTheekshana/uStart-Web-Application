@@ -116,6 +116,9 @@ Route::get('cartitem/{id}','CartsController@cartitem');
 Route::get('MarkCartItemIsComplete/{id}','CartsController@MarkCartItemIsComplete');
 
 
+Route::post('attendencejs','AttendenceController@attendencejs');
+
+
 
 
 

@@ -79,4 +79,17 @@ class AttendenceController extends Controller
 
 
 
+      public function attendencejs(Request $request){
+
+        $id =Auth::user()->id;
+
+        $date=date_create($request->date);
+
+        $attendence = DB::table('attendences')->where('date', date_format($date,"d/m/Y"))->get();
+
+        return json_encode($attendence);
+      }
+
+
+
 }
