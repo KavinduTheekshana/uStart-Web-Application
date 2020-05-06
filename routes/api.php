@@ -59,3 +59,8 @@ Route::get('RepGetCustomers','GroupController@RepGetCustomers');
 //Get Lat and Lng
 Route::get('getlatandlng','LocationController@getlatandlng');
 Route::get('savecurrentlocation','LocationController@savecurrentlocation');
+
+//attendence
+Route::get('intime','AttendenceController@intime');
+Route::get('outtime','AttendenceController@outtime');
+Route::get('calcduration','AttendenceController@calcduration');

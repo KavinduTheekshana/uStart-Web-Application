@@ -59,11 +59,14 @@
                                     <th>Out Time</th>
                                     <th>Duration</th>
                                     <th>Status</th>
+                                    <th>Route</th>
                                 </tr>
                             </thead>
 
 
                             <tbody>
+
+
                                 <tr>
                                     <td>1</td>
                                     <td>Tiger Nixon</td>
@@ -71,6 +74,11 @@
                                     <td>17:30:00</td>
                                     <td>00:00:00</td>
                                     <td><span class="badge badge-md badge-success">Full Day</span></td>
+                                    <td>
+                                        <a href="" type="button"
+                                            class="btn btn-gradient-secondary  waves-effect waves-light"><i
+                                                class="fa fa-route" aria-hidden="true"></i></a>
+                                    </td>
                                 </tr>
 
 
@@ -82,6 +90,11 @@
                                     <td>00:00:00</td>
                                     <td><span
                                         class="badge badge-md badge-danger">Leave</span></td>
+                                        <td>
+                                            <a href="" type="button"
+                                                class="btn btn-gradient-secondary  waves-effect waves-light"><i
+                                                    class="fa fa-route" aria-hidden="true"></i></a>
+                                        </td>
                                 </tr>
 
                                 <tr>
@@ -92,6 +105,11 @@
                                     <td>00:00:00</td>
                                     <td><span
                                         class="badge badge-md badge-warning">Half Day</span></td>
+                                        <td>
+                                            <a href="" type="button"
+                                                class="btn btn-gradient-secondary  waves-effect waves-light"><i
+                                                    class="fa fa-route" aria-hidden="true"></i></a>
+                                        </td>
                                 </tr>
 
                             </tbody>
