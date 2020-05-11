@@ -42,7 +42,7 @@
                         <div class="row ml-2">
                             <h4 class="mt-2 header-title">Select the Date What Do you want to Search
                                 &nbsp;&nbsp;&nbsp;&nbsp;</h4>
-                            <p class="mt-0 text-muted "><input class="form-control" onchange="changeDate()" type="date" value="2020-05-05"
+                            <p class="mt-0 text-muted "><input class="form-control" onchange="changeDate()" type="date" value="{{$currentdate}}"
                                     id="example-date-input"></p>
                         </div>
 

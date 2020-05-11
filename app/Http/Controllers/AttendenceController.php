@@ -12,7 +12,9 @@ class AttendenceController extends Controller
     public function dailyatendence(){
         $id =Auth::user()->id;
         $authprofile = DB::table('users')->where(['id'=>$id])->first();
-        return view('attendence/dailyatendence',['authprofile'=>$authprofile]);
+        $now = Carbon::now();
+        $currentdate = Carbon::parse($now)->format('Y-m-d');
+        return view('attendence/dailyatendence',['authprofile'=>$authprofile,'currentdate'=>$currentdate]);
       }
 
 
@@ -90,6 +92,8 @@ class AttendenceController extends Controller
         return json_encode($attendence);
       }
 
+
+    
 
 
 }

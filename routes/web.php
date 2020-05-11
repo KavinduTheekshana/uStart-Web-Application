@@ -118,6 +118,8 @@ Route::get('MarkCartItemIsComplete/{id}','CartsController@MarkCartItemIsComplete
 
 Route::post('attendencejs','AttendenceController@attendencejs');
 
+Route::get('datedate','ProductController@datedate');
+
 
 
 

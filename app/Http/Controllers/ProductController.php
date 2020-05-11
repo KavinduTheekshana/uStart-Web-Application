@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\products;
 use Auth;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -63,7 +64,12 @@ class ProductController extends Controller
     }
 
 
-    
-    
+    public function datedate(){
+      $now = Carbon::now();
+      $currentdate = Carbon::parse($now)->format('Y-m-d');
+
+      // echo Carbon::createFromFormat('Y-m-d H', $now)->toDateTimeString();
+      // echo $now;       
+    }
 
 }
