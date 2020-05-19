@@ -42,7 +42,7 @@
                         <div class="row ml-2">
                             <h4 class="mt-2 header-title">Select the Date What Do you want to Search
                                 &nbsp;&nbsp;&nbsp;&nbsp;</h4>
-                            <p class="mt-0 text-muted "><input class="form-control" onchange="changeDate()" type="date" value="{{$currentdate}}"
+                            <p class="mt-0 text-muted "><input class="form-control" onchange="changeDate()" type="date"
                                     id="example-date-input"></p>
                         </div>
 
@@ -105,7 +105,7 @@
                                 var td7=document.createElement("td");
                                 
                                 td1.innerHTML=jsonObj.id;
-                                td2.innerHTML=jsonObj.user_id;
+                                td2.innerHTML=jsonObj.name;
                                 td3.innerHTML=jsonObj.intime;
                                 td4.innerHTML=jsonObj.outtime;
                                 td5.innerHTML=jsonObj.duration;
@@ -126,7 +126,7 @@
                             var tr=document.createElement("tr");
                             var td=document.createElement("td");
                             td.setAttribute("colspan","7");
-                            tr.innerHTML="No Records Found";
+                            tr.innerHTML="No data available in table";
                             tr.appendChild(td);
                             document.getElementById("tcontent").appendChild(tr);
                         }

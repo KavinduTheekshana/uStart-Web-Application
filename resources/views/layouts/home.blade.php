@@ -33,6 +33,9 @@
 
     <link href="../assets/plugins/dropify/css/dropify.min.css" rel="stylesheet">
 
+    {{-- select2 --}}
+    <link href="../assets/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>
@@ -69,7 +72,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="profile"><i class="dripicons-user text-muted mr-2"></i>
                             Profile</a>
-                        <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted mr-2"></i> Lock screen</a>
+                        {{-- <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted mr-2"></i> Lock screen</a> --}}
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout"><i class="dripicons-exit text-muted mr-2"></i> Logout</a>
                     </div>
@@ -83,12 +86,12 @@
                         <i class="dripicons-menu nav-icon"></i>
                     </button>
                 </li>
-                <li class="hide-phone app-search">
+                {{-- <li class="hide-phone app-search">
                     <form role="search" class="">
                         <input type="text" placeholder="Search..." class="form-control">
                         <a href=""><i class="fas fa-search"></i></a>
                     </form>
-                </li>
+                </li> --}}
             </ul>
         </nav>
         <!-- end navbar-->
@@ -275,6 +278,17 @@
     <!--Wysiwig js-->
     <script src="../assets/plugins/tinymce/tinymce.min.js"></script>
     <script src="../assets/pages/jquery.form-editor.init.js"></script>
+
+    {{-- select2 --}}
+    <script src="../assets/plugins/moment/moment.js"></script>
+        <script src="../assets/plugins/daterangepicker/daterangepicker.js"></script>
+        <script src="../assets/plugins/select2/select2.min.js"></script>
+        <script src="../assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+        <script src="../assets/plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
+        <script src="../assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+        <script src="../assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js"></script>
+
+        <script src="../assets/pages/jquery.forms-advanced.js"></script>
 
 
 </body>

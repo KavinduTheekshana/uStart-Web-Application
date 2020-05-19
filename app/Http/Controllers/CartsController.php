@@ -109,7 +109,7 @@ public function DeleteCartItem(Request $request){
 
           $model = new Cart();
           $MarkAsComplete = $model->MarkAsComplete($productid);
-          return redirect()->back()->with('status', 'New User Added Sucessfully');
+          return redirect()->back()->with('status', 'Product Was Provided');
         
           }
 

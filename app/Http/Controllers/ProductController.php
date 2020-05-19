@@ -64,12 +64,5 @@ class ProductController extends Controller
     }
 
 
-    public function datedate(){
-      $now = Carbon::now();
-      $currentdate = Carbon::parse($now)->format('Y-m-d');
-
-      // echo Carbon::createFromFormat('Y-m-d H', $now)->toDateTimeString();
-      // echo $now;       
-    }
 
 }

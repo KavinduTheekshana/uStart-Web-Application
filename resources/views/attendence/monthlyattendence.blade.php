@@ -39,8 +39,57 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h4 class="mt-0 header-title">Input Latitude and Longitude or Drag the Pin to add Shop Location
+                        <h4 class="mt-0 header-title">Select Year, Month and User to get Monthly Attendence
                         </h4>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <select onchange="changeDate()" id="year" class="select2 form-control mb-3 custom-select" style="width: 100%; height:36px;">
+                                    <option>Select Year</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                </select>
+                            </div>   
+
+                            <div class="col-md-3">
+                                <select onchange="changeDate()" id="month" class="select2 form-control mb-3 custom-select" style="width: 100%; height:36px;">
+                                    <option>Select Month</option>
+                                        <option value="1">January</option>
+                                        <option value="2">Febarary</option>
+                                        <option value="3">March</option>
+                                        <option value="4">April</option>
+                                        <option value="5">May</option>
+                                        <option value="6">June</option>
+                                        <option value="7">July</option>
+                                        <option value="8">Auguest</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                </select>
+                            </div>  
+
+
+                            <div class="col-md-3">
+                                <select onchange="changeDate()" id="user" class="select2 form-control mb-3 custom-select" style="width: 100%; height:36px;">
+                                    <option>Select User</option>
+
+                                    @foreach($users as $user)
+                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                    @endforeach
+
+                                </select>
+                            </div> 
+
+                        </div>
+
+                        
+
                         <br>
 
                         @if (count($errors) > 0)
@@ -62,16 +111,24 @@
                         </div>
                         @endif
 
-                        <div class="container">
+                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
+                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>In TIme</th>
+                                <th>Out Time</th>
+                                <th>Duration</th>
+                                <th>Status</th>
+                                <th>Route</th>
+                            </tr>
+                        </thead>
 
-                     
 
+                        <tbody id="tcontent">
 
-
-
-
-
-                        </div>
+                        </tbody>
+                    </table>
                         <br>
 
 
@@ -89,6 +146,69 @@
 
 
 
+        <script>
+
+            getData("");
+
+            function changeDate(){
+                getData(document.getElementById('year').value,document.getElementById('month').value,document.getElementById('user').value);
+            }
+
+            function getData(year,month,user){
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var arrayObj=JSON.parse(this.responseText);
+                        
+                        document.getElementById("tcontent").innerHTML="";
+                        if(arrayObj.length>0){
+                            for(var i=0;i<arrayObj.length;i++){
+                                var tr=document.createElement("tr");
+
+                                var jsonObj=arrayObj[i];
+
+                                var td1=document.createElement("td");
+                                var td2=document.createElement("td");
+                                var td3=document.createElement("td");
+                                var td4=document.createElement("td");
+                                var td5=document.createElement("td");
+                                var td6=document.createElement("td");
+                                
+                                
+
+                                td1.innerHTML=jsonObj.name;
+                                td2.innerHTML=jsonObj.intime;
+                                td3.innerHTML=jsonObj.outtime;
+                                td4.innerHTML=jsonObj.duration;
+                                
+                                td5.innerHTML="<span class='badge badge-md badge-success'>"+jsonObj.duration+"</span>";
+                                td6.innerHTML="<a href='' type='button' class='btn btn-gradient-secondary  waves-effect waves-light'><i class='fa fa-route' aria-hidden='true'></i></a>";
+
+                                 tr.appendChild(td1); 
+                                 tr.appendChild(td2); 
+                                 tr.appendChild(td3); 
+                                 tr.appendChild(td4); 
+                                 tr.appendChild(td5); 
+                                 tr.appendChild(td6); 
+                                 document.getElementById("tcontent").appendChild(tr);
+                            }
+                        }else{
+                            var tr=document.createElement("tr");
+                            var td=document.createElement("td");
+                            td.setAttribute("colspan","7");
+                            tr.innerHTML="No data available in table";
+                            tr.appendChild(td);
+                            document.getElementById("tcontent").appendChild(tr);
+                        }
+                        
+                    }
+                };
+
+                xhttp.open("POST", "monthlyattendencejs", false);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("_token={{ csrf_token() }}&year="+year+"&month="+month+"&user="+user);
+            }
+        </script>
 
 
-@endsection
+        @endsection

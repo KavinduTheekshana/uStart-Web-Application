@@ -23,7 +23,14 @@ class AttendenceController extends Controller
       public function monthlyattendence(){
         $id =Auth::user()->id;
         $authprofile = DB::table('users')->where(['id'=>$id])->first();
-        return view('attendence/monthlyattendence',['authprofile'=>$authprofile]);
+        $users = DB::table('users')->where('user_type', 1)->get();
+        $monthlyattendence = DB::table('attendences')
+            ->join('users', 'attendences.user_id', '=', 'users.id')
+            ->select('users.name','users.profile_pic', 'attendences.date', 'attendences.intime', 'attendences.outtime', 'attendences.duration')
+            ->whereYear('date', '=', '2020')->whereMonth('date', '=', '5')->where('user_id', '=', '2')
+            ->get();
+        // return $monthlyattendence;
+        return view('attendence/monthlyattendence',['authprofile'=>$authprofile,'users'=>$users,'monthlyattendence'=>$monthlyattendence]);
       }
 
       
@@ -32,8 +39,7 @@ class AttendenceController extends Controller
         $id = $request->uid;
         $date = $request->date;
         $intime = $request->intime;
-
-       DB::table('attendences')->insert(
+        DB::table('attendences')->insert(
           ['user_id' => $id, 'date' => $date,'intime' => $intime]);
 
       }
@@ -82,14 +88,33 @@ class AttendenceController extends Controller
 
 
       public function attendencejs(Request $request){
-
         $id =Auth::user()->id;
+        $date=$request->date;
+        // $attendence = DB::table('attendences')->where('date', date_format($date,"d/m/Y"))->get();
 
-        $date=date_create($request->date);
-
-        $attendence = DB::table('attendences')->where('date', date_format($date,"d/m/Y"))->get();
+        $attendence = DB::table('attendences')
+            ->join('users', 'attendences.user_id', '=', 'users.id')
+            ->select('attendences.id','users.name','attendences.date','attendences.intime','attendences.status','attendences.outtime','attendences.duration')
+            // ->where('date', date_format($date,"d/m/Y"))
+            ->where('date', $date)
+            ->get();
 
         return json_encode($attendence);
+      }
+
+      public function monthlyattendencejs(Request $request){
+        
+        $year=$request->year;
+        $month=$request->month;
+        $user=$request->user;
+        // $attendence = DB::table('attendences')->where('date', date_format($date,"d/m/Y"))->get();
+
+        $monthlyattendence = DB::table('attendences')
+            ->join('users', 'attendences.user_id', '=', 'users.id')
+            ->select('users.name','users.profile_pic', 'attendences.date', 'attendences.intime', 'attendences.outtime', 'attendences.duration')
+            ->whereYear('date', '=', $year)->whereMonth('date', '=', $month)->where('user_id', '=', $user)
+            ->get();
+        return json_encode($monthlyattendence);
       }
 
 
