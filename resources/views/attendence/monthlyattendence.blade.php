@@ -115,6 +115,7 @@
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
+                                <th>Date</th>
                                 <th>Name</th>
                                 <th>In TIme</th>
                                 <th>Out Time</th>
@@ -173,16 +174,24 @@
                                 var td4=document.createElement("td");
                                 var td5=document.createElement("td");
                                 var td6=document.createElement("td");
+                                var td7=document.createElement("td");
                                 
                                 
 
-                                td1.innerHTML=jsonObj.name;
-                                td2.innerHTML=jsonObj.intime;
-                                td3.innerHTML=jsonObj.outtime;
-                                td4.innerHTML=jsonObj.duration;
+                                td1.innerHTML=jsonObj.date;
+                                td2.innerHTML=jsonObj.name;
+                                td3.innerHTML=jsonObj.intime;
+                                td4.innerHTML=jsonObj.outtime;
+                                td5.innerHTML=jsonObj.duration;
                                 
-                                td5.innerHTML="<span class='badge badge-md badge-success'>"+jsonObj.duration+"</span>";
-                                td6.innerHTML="<a href='' type='button' class='btn btn-gradient-secondary  waves-effect waves-light'><i class='fa fa-route' aria-hidden='true'></i></a>";
+                                if (jsonObj.statustwo == "Leave") {
+                                    td6.innerHTML="<span class='badge badge-md badge-danger'>"+"Leave"+"</span>";
+                                } else if (jsonObj.statustwo == "Half Day"){
+                                    td6.innerHTML="<span class='badge badge-md badge-warning'>"+"Half Day"+"</span>";
+                                }else{
+                                    td6.innerHTML="<span class='badge badge-md badge-success'>"+"Full Day"+"</span>";
+                                }
+                                td7.innerHTML="<a href='' type='button' class='btn btn-gradient-secondary  waves-effect waves-light'><i class='fa fa-route' aria-hidden='true'></i></a>";
 
                                  tr.appendChild(td1); 
                                  tr.appendChild(td2); 
@@ -190,6 +199,7 @@
                                  tr.appendChild(td4); 
                                  tr.appendChild(td5); 
                                  tr.appendChild(td6); 
+                                 tr.appendChild(td7); 
                                  document.getElementById("tcontent").appendChild(tr);
                             }
                         }else{

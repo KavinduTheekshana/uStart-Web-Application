@@ -110,7 +110,14 @@
                                 td4.innerHTML=jsonObj.outtime;
                                 td5.innerHTML=jsonObj.duration;
                                 
-                                td6.innerHTML="<span class='badge badge-md badge-success'>"+jsonObj.duration+"</span>";
+                                if (jsonObj.statustwo == "Leave") {
+                                    td6.innerHTML="<span class='badge badge-md badge-danger'>"+"Leave"+"</span>";
+                                } else if (jsonObj.statustwo == "Half Day"){
+                                    td6.innerHTML="<span class='badge badge-md badge-warning'>"+"Half Day"+"</span>";
+                                }else{
+                                    td6.innerHTML="<span class='badge badge-md badge-success'>"+"Full Day"+"</span>";
+                                }
+                                
                                 td7.innerHTML="<a href='' type='button' class='btn btn-gradient-secondary  waves-effect waves-light'><i class='fa fa-route' aria-hidden='true'></i></a>";
 
                                  tr.appendChild(td1); 
@@ -126,7 +133,7 @@
                             var tr=document.createElement("tr");
                             var td=document.createElement("td");
                             td.setAttribute("colspan","7");
-                            tr.innerHTML="No data available in table";
+                            tr.innerHTML="<div class='mt-2 mb-2 align-content-center'>No data available in table</div>";
                             tr.appendChild(td);
                             document.getElementById("tcontent").appendChild(tr);
                         }

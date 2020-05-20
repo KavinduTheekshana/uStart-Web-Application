@@ -49,6 +49,7 @@ class AttendenceController extends Controller
         $id = $request->uid;
         $date = $request->date;
         $outtime = $request->outtime;
+        $statustwo ="Null";
 
 
         $data = DB::table('attendences')->where(['user_id' => $id , 'date' => $date])->select('intime')->first();
@@ -60,10 +61,23 @@ class AttendenceController extends Controller
         $totalDuration = $finishTime->diffInSeconds($startTime);
         $duration =  gmdate('H:i:s', $totalDuration);
 
+        if($totalDuration<10600){
+          $statustwo = "Leave"; 
+        }
+        else if($totalDuration<21600){
+          $statustwo = "Half Day"; 
+        }
+        else if($totalDuration>21600){
+          $statustwo = "Full Day"; 
+        }else{
+          $statustwo ="Null";
+        }
 
+        
+ 
         $update = DB::table('attendences')
             ->where(['user_id' => $id , 'date' => $date])
-            ->update(['status' => false ,'outtime' => $outtime ,'duration' => $duration ]);
+            ->update(['status' => false ,'outtime' => $outtime ,'duration' => $duration ,'statustwo' => $statustwo ]);
             return $update;
 
 
@@ -94,7 +108,7 @@ class AttendenceController extends Controller
 
         $attendence = DB::table('attendences')
             ->join('users', 'attendences.user_id', '=', 'users.id')
-            ->select('attendences.id','users.name','attendences.date','attendences.intime','attendences.status','attendences.outtime','attendences.duration')
+            ->select('attendences.id','users.name','attendences.date','attendences.intime','attendences.status','attendences.outtime','attendences.duration','attendences.statustwo')
             // ->where('date', date_format($date,"d/m/Y"))
             ->where('date', $date)
             ->get();
@@ -111,8 +125,9 @@ class AttendenceController extends Controller
 
         $monthlyattendence = DB::table('attendences')
             ->join('users', 'attendences.user_id', '=', 'users.id')
-            ->select('users.name','users.profile_pic', 'attendences.date', 'attendences.intime', 'attendences.outtime', 'attendences.duration')
+            ->select('users.name', 'attendences.date', 'attendences.intime', 'attendences.outtime', 'attendences.duration', 'attendences.date','attendences.statustwo')
             ->whereYear('date', '=', $year)->whereMonth('date', '=', $month)->where('user_id', '=', $user)
+            ->orderby('date')
             ->get();
         return json_encode($monthlyattendence);
       }

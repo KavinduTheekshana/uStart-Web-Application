@@ -59,7 +59,7 @@
                         <a href="user_activate/{{$user->id}}"><span class="badge badge-md badge-danger">Profile is
                                 Deactivate</span></a>
                         @endif
-                        <a type="button" id="sa-warning"><span class="badge badge-md badge-warning"><i
+                        <a href="deleteuser/{{$user->id}}" type="button" id="sa-warning"><span class="badge badge-md badge-warning"><i
                                     class="fas fa-trash-alt"></i></span></a>
                         {{-- <a  href="user_delete/{{$user->id}}"><span class="badge badge-md badge-warning"><i
                                 class="fas fa-trash-alt"></i></span></a> --}}

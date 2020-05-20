@@ -41,6 +41,7 @@ Route::post('/adduser', 'UsersController@adduser')->middleware('auth');
 Route::get('manageusers','UsersController@manageusers')->middleware('auth');
 Route::get('userslist','UsersController@userslist')->middleware('auth');
 Route::get('edituser/{id}', 'UsersController@edituser')->middleware('auth');
+Route::get('deleteuser/{id}', 'UsersController@deleteuser')->middleware('auth');
 Route::post('updateuser','UsersController@updateuser')->middleware('auth');
 Route::get('user_diactivate/{id}', 'UsersController@user_diactivate')->middleware('auth');
 Route::get('user_activate/{id}', 'UsersController@user_activate')->middleware('auth');

@@ -36,7 +36,7 @@
                                     <div class="met-profile-main">
                                         <div class="met-profile-main-pic">
                                             <img src="{{$authprofile->profile_pic}}" alt="" class="rounded-circle"
-                                                style="width: 128px">
+                                                style="width: 128px; height:128px;">
                                             <span class="fro-profile_main-pic-change">
                                                 <i class="fas fa-camera"></i>
                                             </span>

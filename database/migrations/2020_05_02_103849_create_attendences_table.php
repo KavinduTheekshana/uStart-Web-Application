@@ -21,6 +21,7 @@ class CreateAttendencesTable extends Migration
             $table->boolean('status')->default(true);
             $table->string('outtime')->nullable();
             $table->string('duration')->nullable();
+            $table->string('statustwo')->nullable();
             $table->timestamps();
         });
     }

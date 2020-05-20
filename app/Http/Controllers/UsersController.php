@@ -55,15 +55,19 @@ class UsersController extends Controller
       public function userslist(){
         $id =Auth::user()->id;
         $authprofile = DB::table('users')->where(['id'=>$id])->first();
-        $users = DB::table('users')->where('user_type', '1')->paginate(20);  
+        $users = DB::table('users')->where('user_type', '1')->get();  
         return view('users/userslist',['users'=>$users,'authprofile'=>$authprofile]);
       }
 
       public function edituser($id){
-        $id =Auth::user()->id;
         $authprofile = DB::table('users')->where(['id'=>$id])->first();
         $users = DB::table('users')->where('id', $id)->first();   
         return view('users/editusers',['users'=>$users,'authprofile'=>$authprofile]);
+      }
+
+      public function deleteuser($id){
+        $users = DB::table('users')->where('id', $id)->delete();   
+        return redirect()->back()->with('user_diactivate_status', 'User Delete Sucessfully');
       }
 
 

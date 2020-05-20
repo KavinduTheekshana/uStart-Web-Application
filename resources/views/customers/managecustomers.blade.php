@@ -122,12 +122,12 @@
                                         <a href="editcustomer/{{$customer->id}}" type="button"
                                             class="btn btn-gradient-warning waves-effect waves-light"><i
                                                 class="fa fa-pen" aria-hidden="true"></i></a>
-                                        <button type="button" class="btn btn-gradient-pink waves-effect waves-light"><i
+                                        <a href="deleteuser/{{$customer->id}}" type="button" class="btn btn-gradient-pink waves-effect waves-light"><i
                                                 class="fa fa-trash" aria-hidden="true"></i></button>
 
                                         @if($customer->status)
                                         <a href="customer_diactivate/{{$customer->id}}" type="button"
-                                            class="btn btn-gradient-danger waves-effect waves-light"><i
+                                            class="ml-1 btn btn-gradient-danger waves-effect waves-light"><i
                                                 class="fa fa-lock" aria-hidden="true"></i></a>
                                         {{-- <a href="user_diactivate/{{$customer->id}}"><span
                                             class="badge badge-md badge-success">Profile is
@@ -138,7 +138,7 @@
                                             Deactivate</span></a> --}}
 
                                         <a href="customer_activate/{{$customer->id}}" type="button"
-                                            class="btn btn-gradient-success waves-effect waves-light"><i
+                                            class="ml-1 btn btn-gradient-success waves-effect waves-light"><i
                                                 class="fa fa-unlock" aria-hidden="true"></i></button>
                                             @endif
                                             {{-- <button type="button" class="btn btn-gradient-success waves-effect waves-light"><i
