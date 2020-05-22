@@ -10,6 +10,7 @@ use DB;
 use App\user;
 use App\CustomerLocation;
 use Auth;
+use Carbon\Carbon;
 
 
 class LocationController extends Controller
@@ -69,9 +70,8 @@ class LocationController extends Controller
     public function savecurrentlocation(Request $request){
       $JsonArray=[];
       if(isset($request->userid) && isset($request->dateString) && isset($request->timeString) && isset($request->lat) && isset($request->lng)){ 
-
         $userid = $request->userid;
-        $dateString = $request->dateString;
+        $dateString = Carbon::createFromFormat('d/m/Y', $request->dateString)->toDateString();
         $timeString = $request->timeString;
         $lat = $request->lat;
         $lng = $request->lng;

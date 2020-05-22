@@ -118,7 +118,7 @@
                                     td6.innerHTML="<span class='badge badge-md badge-success'>"+"Full Day"+"</span>";
                                 }
                                 
-                                td7.innerHTML="<a href='' type='button' class='btn btn-gradient-secondary  waves-effect waves-light'><i class='fa fa-route' aria-hidden='true'></i></a>";
+                                td7.innerHTML="<a href='addusers' type='button' class='btn btn-gradient-secondary waves-effect waves-light' data-toggle='modal' data-animation='bounce' data-target='.bs-example-modal-center'><i class='fa fa-route' aria-hidden='true'></i></a>";
 
                                  tr.appendChild(td1); 
                                  tr.appendChild(td2); 
@@ -148,6 +148,124 @@
         </script>
 
 
+<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            
+
+            <div id="map" style="height: 600px"></div>
+      
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
+{{-- 
+<script>
+    var x,y,z;
+    function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+
+        x = new google.maps.LatLng(5.9549, 80.5550);
+        y = new google.maps.LatLng(6.9271, 79.8612);
+        z = new google.maps.LatLng(7.2906, 80.6337);
+
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 7,
+            center: {
+                lat: 5.9549,
+                lng: 80.5550
+            }
+        });
+        directionsDisplay.setMap(map);
+
+        var onChangeHandler = function() {
+            calculateAndDisplayRoute(directionsService, directionsDisplay);
+        };
+        document.getElementById('getbtn').addEventListener("click", onChangeHandler);
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        directionsService.route({
+            origin: x,
+            destination: [y,z],
+            travelMode: 'DRIVING'
+        }, function(response, status) {
+            if (status === 'OK') {
+                directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    }
+</script> --}}
+
+
+<script>
+    var x,y,z;
+    
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: {lat: 5.9549, lng: 80.5550}  // Australia.
+      });
+
+        x = new google.maps.LatLng(5.9549, 80.5550);
+        y = new google.maps.LatLng(6.9271, 79.8612);
+        z = new google.maps.LatLng(7.2906, 80.6337);
+        a = new google.maps.LatLng(7.9403, 81.0188);
+        
+      var directionsService = new google.maps.DirectionsService;
+      var directionsRenderer = new google.maps.DirectionsRenderer({
+        draggable: true,
+        map: map,
+        panel: document.getElementById('right-panel')
+      });
+
+      directionsRenderer.addListener('directions_changed', function() {
+        computeTotalDistance(directionsRenderer.getDirections());
+      });
+
+      displayRoute( directionsService,directionsRenderer);
+    }
+
+    function displayRoute(service, display) {
+      service.route({
+        origin: x,
+        destination: y,
+        // destination: z,
+        waypoints: [{location: z}, {location: a}],
+        travelMode: 'DRIVING',
+        avoidTolls: true
+      }, function(response, status) {
+        if (status === 'OK') {
+          display.setDirections(response);
+        } else {
+          alert('Could not display directions due to: ' + status);
+        }
+      });
+    }
+
+    function computeTotalDistance(result) {
+      var total = 0;
+      var myroute = result.routes[0];
+      for (var i = 0; i < myroute.legs.length; i++) {
+        total += myroute.legs[i].distance.value;
+      }
+      total = total / 1000;
+      document.getElementById('total').innerHTML = total + ' km';
+    }
+  </script>
+
+
+
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcuvYDk04jY_H-o_EIcdr8vQi3Mz0eWnc&libraries=places&callback=initMap"
+    async defer></script>
+
+
+
+    
         @endsection

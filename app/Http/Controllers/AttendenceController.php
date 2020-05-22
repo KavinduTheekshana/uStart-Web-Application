@@ -85,8 +85,8 @@ class AttendenceController extends Controller
 
 
       public function calcduration(Request $request){
-
-        $timestamp = strtotime("13-10-2013 15:00");
+        $date = Carbon::createFromFormat('d/m/Y', '21/05/2020')->toDateString();
+        // $timestamp = strtotime("21/05/2020");
 
 
         // $date = date('04/05/2020');
@@ -96,7 +96,7 @@ class AttendenceController extends Controller
         // $calc = $intime - $outtime;
 
 
-        return $timestamp;
+        return $date;
       }
 
 
@@ -104,12 +104,10 @@ class AttendenceController extends Controller
       public function attendencejs(Request $request){
         $id =Auth::user()->id;
         $date=$request->date;
-        // $attendence = DB::table('attendences')->where('date', date_format($date,"d/m/Y"))->get();
 
         $attendence = DB::table('attendences')
             ->join('users', 'attendences.user_id', '=', 'users.id')
             ->select('attendences.id','users.name','attendences.date','attendences.intime','attendences.status','attendences.outtime','attendences.duration','attendences.statustwo')
-            // ->where('date', date_format($date,"d/m/Y"))
             ->where('date', $date)
             ->get();
 
@@ -121,7 +119,6 @@ class AttendenceController extends Controller
         $year=$request->year;
         $month=$request->month;
         $user=$request->user;
-        // $attendence = DB::table('attendences')->where('date', date_format($date,"d/m/Y"))->get();
 
         $monthlyattendence = DB::table('attendences')
             ->join('users', 'attendences.user_id', '=', 'users.id')
