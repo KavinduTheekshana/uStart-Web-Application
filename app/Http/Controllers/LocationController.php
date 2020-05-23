@@ -91,7 +91,14 @@ class LocationController extends Controller
       }
 
       return json_encode($JsonArray);
-
-
   }
+
+
+
+  public function latlng(){
+    $data = DB::table('customer_locations')->select('lat','lng')->get();
+    return $data;
+  }
+
+
 }

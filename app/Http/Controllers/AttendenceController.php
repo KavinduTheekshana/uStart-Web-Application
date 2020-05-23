@@ -37,17 +37,30 @@ class AttendenceController extends Controller
       public function intime(Request $request){
 
         $id = $request->uid;
-        $date = $request->date;
+        $date = Carbon::createFromFormat('d/m/Y', $request->date)->toDateString();
         $intime = $request->intime;
-        DB::table('attendences')->insert(
+
+        $select = DB::table('attendences')->where(['user_id' => $id , 'date' => $date])->first();
+
+        return $select->status;
+
+        if(isset($select) &&  $select!=""){
+          return 'xxx';
+        }
+
+          
+
+        $insert = DB::table('attendences')->insert(
           ['user_id' => $id, 'date' => $date,'intime' => $intime]);
+
+          return json_encode($insert);
 
       }
 
       public function outtime(Request $request){
 
         $id = $request->uid;
-        $date = $request->date;
+        $date = Carbon::createFromFormat('d/m/Y', $request->date)->toDateString();
         $outtime = $request->outtime;
         $statustwo ="Null";
 
@@ -82,6 +95,29 @@ class AttendenceController extends Controller
 
 
       }
+
+
+      public function status(Request $request){
+        $JsonArray=[];
+        $id = $request->uid;
+        $date = Carbon::createFromFormat('d/m/Y', $request->date)->toDateString();
+
+        $select = DB::table('attendences')
+        ->where(['user_id' => $id , 'date' => $date])
+        ->select('status')
+        ->first();
+
+        if ($select->status == "1") {
+          $JsonArray['status'] = "1";
+        } else {
+          $JsonArray['status'] = "0";
+        }
+      
+        return json_encode($JsonArray);
+
+      }
+
+
 
 
       public function calcduration(Request $request){

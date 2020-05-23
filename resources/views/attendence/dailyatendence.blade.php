@@ -76,7 +76,6 @@
 
 
         <script>
-
             getData("");
 
             function changeDate(){
@@ -148,19 +147,20 @@
         </script>
 
 
-<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            
-
-            <div id="map" style="height: 600px"></div>
-      
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
 
 
-{{-- 
+                    <div id="map" style="height: 600px"></div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+        {{-- 
 <script>
     var x,y,z;
     function initMap() {
@@ -203,23 +203,20 @@
 </script> --}}
 
 
-<script>
-    var x,y,z;
+        <script>
+            var x,y,z;
     
     function initMap() {
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
-        center: {lat: 5.9549, lng: 80.5550}  // Australia.
+        zoom: 3,
+        center: {lat: 5.9549, lng: 80.5550},
+        mapTypeId: 'terrain'
       });
 
-        x = new google.maps.LatLng(5.9549, 80.5550);
-        y = new google.maps.LatLng(6.9271, 79.8612);
-        z = new google.maps.LatLng(7.2906, 80.6337);
-        a = new google.maps.LatLng(7.9403, 81.0188);
         
       var directionsService = new google.maps.DirectionsService;
       var directionsRenderer = new google.maps.DirectionsRenderer({
-        draggable: true,
+        draggable: false,
         map: map,
         panel: document.getElementById('right-panel')
       });
@@ -231,12 +228,26 @@
       displayRoute( directionsService,directionsRenderer);
     }
 
+    function getPoints(yourUrl){
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET",yourUrl,false);
+    Httpreq.send(null);
+    return Httpreq.responseText;          
+}
+
     function displayRoute(service, display) {
+
+        var json_obj = JSON.parse(getPoints('http://127.0.0.1:8000/api/latlng'));
+        var rest_points = []
+        for(i=1; i<json_obj.length-2;i++){
+            rest_points.push({
+                location: new google.maps.LatLng(json_obj[i].lat, json_obj[i].lng)
+            });
+        }
       service.route({
-        origin: x,
-        destination: y,
-        // destination: z,
-        waypoints: [{location: z}, {location: a}],
+        origin: new google.maps.LatLng(json_obj[0].lat, json_obj[0].lng),
+        destination: new google.maps.LatLng(json_obj[json_obj.length -1].lat, json_obj[json_obj.length -1].lng),
+        waypoints: rest_points,
         travelMode: 'DRIVING',
         avoidTolls: true
       }, function(response, status) {
@@ -257,15 +268,15 @@
       total = total / 1000;
       document.getElementById('total').innerHTML = total + ' km';
     }
-  </script>
+        </script>
 
 
 
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcuvYDk04jY_H-o_EIcdr8vQi3Mz0eWnc&libraries=places&callback=initMap"
-    async defer></script>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcuvYDk04jY_H-o_EIcdr8vQi3Mz0eWnc&libraries=places&callback=initMap"
+            async defer></script>
 
 
 
-    
+
         @endsection

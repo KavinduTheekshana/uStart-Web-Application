@@ -63,7 +63,8 @@ Route::get('savecurrentlocation','LocationController@savecurrentlocation');
 //attendence
 Route::get('intime','AttendenceController@intime');
 Route::get('outtime','AttendenceController@outtime');
+Route::get('status','AttendenceController@status');
 Route::get('calcduration','AttendenceController@calcduration');
 
 //testing route
-Route::get('latlng','AttendenceController@latlng');
+Route::get('latlng','LocationController@latlng');
