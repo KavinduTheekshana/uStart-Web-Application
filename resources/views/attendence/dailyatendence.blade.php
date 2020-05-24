@@ -117,7 +117,7 @@
                                     td6.innerHTML="<span class='badge badge-md badge-success'>"+"Full Day"+"</span>";
                                 }
                                 
-                                td7.innerHTML="<a href='addusers' onclick='initMap("+jsonObj.userid+")' id='submitroute' type='button' class='btn btn-gradient-secondary waves-effect waves-light' data-toggle='modal' data-animation='bounce' data-target='.bs-example-modal-center'><i class='fa fa-route' aria-hidden='true'></i></a>";
+                                td7.innerHTML="<a href='' onclick='initMap("+jsonObj.userid+")' id='submitroute' type='button' class='btn btn-gradient-secondary waves-effect waves-light' data-toggle='modal' data-animation='bounce' data-target='.bs-example-modal-center'><i class='fa fa-route' aria-hidden='true'></i></a>";
 
                                  tr.appendChild(td1); 
                                  tr.appendChild(td2); 

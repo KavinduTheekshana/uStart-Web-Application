@@ -191,7 +191,7 @@
                                 }else{
                                     td6.innerHTML="<span class='badge badge-md badge-success'>"+"Full Day"+"</span>";
                                 }
-                                td7.innerHTML="<a href='' type='button' class='btn btn-gradient-secondary  waves-effect waves-light'><i class='fa fa-route' aria-hidden='true'></i></a>";
+                                td7.innerHTML="<a href='' onclick='initMap("+JSON.stringify(jsonObj.date)+")' id='submitroute' type='button' class='btn btn-gradient-secondary waves-effect waves-light' data-toggle='modal' data-animation='bounce' data-target='.bs-example-modal-center'><i class='fa fa-route' aria-hidden='true'></i></a>";
 
                                  tr.appendChild(td1); 
                                  tr.appendChild(td2); 
@@ -219,6 +219,102 @@
                 xhttp.send("_token={{ csrf_token() }}&year="+year+"&month="+month+"&user="+user);
             }
         </script>
+
+
+
+
+<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+
+        <div id="map" style="height: 600px"></div>
+
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+<script>
+    function initMap(date) {
+      var directionsService = new google.maps.DirectionsService;
+      var directionsRenderer = new google.maps.DirectionsRenderer({
+preserveViewport: true
+});
+
+var json_obj = JSON.parse(getPoints('http://127.0.0.1:8000/api/userroute?uid='+document.getElementById('user').value+'&date='+date));
+console.log(json_obj[0].lng);
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: {lat: json_obj[0].lat, lng: json_obj[0].lng}
+      });
+      directionsRenderer.setMap(map);
+
+ 
+    //   document.getElementById('submitroute').addEventListener('click', function() {
+  calculateAndDisplayRoute(document.getElementById('user').value,date,directionsService, directionsRenderer);
+// });
+
+    }
+
+    function getPoints(yourUrl){
+var Httpreq = new XMLHttpRequest(); // a new request
+Httpreq.open("GET",yourUrl,false);
+Httpreq.send(null);
+return Httpreq.responseText;          
+}
+
+
+    function calculateAndDisplayRoute(userid,date,directionsService, directionsRenderer) {
+      
+        var json_obj = JSON.parse(getPoints('http://127.0.0.1:8000/api/userroute?uid='+userid+'&date='+date));
+var rest_points = []
+for(i=1; i<json_obj.length-1;i++){
+    rest_points.push({
+        location: new google.maps.LatLng(json_obj[i].lat, json_obj[i].lng)
+    });
+}
+
+
+      directionsService.route({
+        origin: new google.maps.LatLng(json_obj[0].lat, json_obj[0].lng),
+destination: new google.maps.LatLng(json_obj[json_obj.length -1].lat, json_obj[json_obj.length -1].lng),
+waypoints: rest_points,
+        optimizeWaypoints: true,
+        travelMode: 'DRIVING'
+      }, function(response, status) {
+        if (status === 'OK') {
+          directionsRenderer.setDirections(response);
+          var route = response.routes[0];
+          var summaryPanel = document.getElementById('directions-panel');
+          summaryPanel.innerHTML = '';
+          // For each route, display summary information.
+          for (var i = 0; i < route.legs.length; i++) {
+            var routeSegment = i + 1;
+            summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                '</b><br>';
+            summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+            summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+            summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+          }
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+    }
+
+   
+</script> 
+
+
+<script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcuvYDk04jY_H-o_EIcdr8vQi3Mz0eWnc&libraries=places"
+async defer></script>
 
 
         @endsection
