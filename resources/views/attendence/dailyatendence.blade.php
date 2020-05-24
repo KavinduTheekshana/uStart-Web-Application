@@ -117,7 +117,7 @@
                                     td6.innerHTML="<span class='badge badge-md badge-success'>"+"Full Day"+"</span>";
                                 }
                                 
-                                td7.innerHTML="<a href='addusers' type='button' class='btn btn-gradient-secondary waves-effect waves-light' data-toggle='modal' data-animation='bounce' data-target='.bs-example-modal-center'><i class='fa fa-route' aria-hidden='true'></i></a>";
+                                td7.innerHTML="<a href='addusers' onclick='initMap("+jsonObj.userid+")' id='submitroute' type='button' class='btn btn-gradient-secondary waves-effect waves-light' data-toggle='modal' data-animation='bounce' data-target='.bs-example-modal-center'><i class='fa fa-route' aria-hidden='true'></i></a>";
 
                                  tr.appendChild(td1); 
                                  tr.appendChild(td2); 
@@ -160,50 +160,87 @@
         </div><!-- /.modal -->
 
 
-        {{-- 
-<script>
-    var x,y,z;
-    function initMap() {
-        var directionsService = new google.maps.DirectionsService;
-        var directionsDisplay = new google.maps.DirectionsRenderer;
 
-        x = new google.maps.LatLng(5.9549, 80.5550);
-        y = new google.maps.LatLng(6.9271, 79.8612);
-        z = new google.maps.LatLng(7.2906, 80.6337);
+     <script>
+            function initMap(userid) {
+              var directionsService = new google.maps.DirectionsService;
+              var directionsRenderer = new google.maps.DirectionsRenderer({
+    preserveViewport: true
+});
 
+var json_obj = JSON.parse(getPoints('http://127.0.0.1:8000/api/userroute?uid='+userid+'&date='+document.getElementById('example-date-input').value));
+console.log(json_obj[0].lng);
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 7,
-            center: {
-                lat: 5.9549,
-                lng: 80.5550
+              var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: {lat: json_obj[0].lat, lng: json_obj[0].lng}
+              });
+              directionsRenderer.setMap(map);
+      
+         
+            //   document.getElementById('submitroute').addEventListener('click', function() {
+          calculateAndDisplayRoute(userid,document.getElementById('example-date-input').value,directionsService, directionsRenderer);
+        // });
+       
             }
-        });
-        directionsDisplay.setMap(map);
+      
+            function getPoints(yourUrl){
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET",yourUrl,false);
+    Httpreq.send(null);
+    return Httpreq.responseText;          
+}
 
-        var onChangeHandler = function() {
-            calculateAndDisplayRoute(directionsService, directionsDisplay);
-        };
-        document.getElementById('getbtn').addEventListener("click", onChangeHandler);
-    }
 
-    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        directionsService.route({
-            origin: x,
-            destination: [y,z],
-            travelMode: 'DRIVING'
-        }, function(response, status) {
-            if (status === 'OK') {
-                directionsDisplay.setDirections(response);
-            } else {
-                window.alert('Directions request failed due to ' + status);
+            function calculateAndDisplayRoute(userid,date,directionsService, directionsRenderer) {
+              
+                var json_obj = JSON.parse(getPoints('http://127.0.0.1:8000/api/userroute?uid='+userid+'&date='+date));
+        var rest_points = []
+        for(i=1; i<json_obj.length-1;i++){
+            rest_points.push({
+                location: new google.maps.LatLng(json_obj[i].lat, json_obj[i].lng)
+            });
+        }
+        
+      
+              directionsService.route({
+                origin: new google.maps.LatLng(json_obj[0].lat, json_obj[0].lng),
+        destination: new google.maps.LatLng(json_obj[json_obj.length -1].lat, json_obj[json_obj.length -1].lng),
+        waypoints: rest_points,
+                optimizeWaypoints: true,
+                travelMode: 'DRIVING'
+              }, function(response, status) {
+                if (status === 'OK') {
+                  directionsRenderer.setDirections(response);
+                  var route = response.routes[0];
+                  var summaryPanel = document.getElementById('directions-panel');
+                  summaryPanel.innerHTML = '';
+                  // For each route, display summary information.
+                  for (var i = 0; i < route.legs.length; i++) {
+                    var routeSegment = i + 1;
+                    summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                        '</b><br>';
+                    summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                    summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                    summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+                  }
+                } else {
+                  window.alert('Directions request failed due to ' + status);
+                }
+              });
             }
-        });
-    }
-</script> --}}
+
+           
+        </script> 
 
 
-        <script>
+
+
+
+
+
+
+       {{-- <script>
             var x,y,z;
     
     function initMap() {
@@ -266,14 +303,14 @@
         total += myroute.legs[i].distance.value;
       }
       total = total / 1000;
-      document.getElementById('total').innerHTML = total + ' km';
+      alert = total + ' km';
     }
-        </script>
+        </script>  --}}
 
 
 
         <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcuvYDk04jY_H-o_EIcdr8vQi3Mz0eWnc&libraries=places&callback=initMap"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcuvYDk04jY_H-o_EIcdr8vQi3Mz0eWnc&libraries=places"
             async defer></script>
 
 

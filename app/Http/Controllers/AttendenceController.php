@@ -40,13 +40,13 @@ class AttendenceController extends Controller
         $date = Carbon::createFromFormat('d/m/Y', $request->date)->toDateString();
         $intime = $request->intime;
 
-        $select = DB::table('attendences')->where(['user_id' => $id , 'date' => $date])->first();
+        // $select = DB::table('attendences')->where(['user_id' => $id , 'date' => $date])->first();
 
-        return $select->status;
+        // return $select->status;
 
-        if(isset($select) &&  $select!=""){
-          return 'xxx';
-        }
+        // if(isset($select) &&  $select!=""){
+        //   return 'xxx';
+        // }
 
           
 
@@ -143,7 +143,7 @@ class AttendenceController extends Controller
 
         $attendence = DB::table('attendences')
             ->join('users', 'attendences.user_id', '=', 'users.id')
-            ->select('attendences.id','users.name','attendences.date','attendences.intime','attendences.status','attendences.outtime','attendences.duration','attendences.statustwo')
+            ->select('users.id as userid','attendences.id','users.name','attendences.date','attendences.intime','attendences.status','attendences.outtime','attendences.duration','attendences.statustwo')
             ->where('date', $date)
             ->get();
 

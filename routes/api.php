@@ -68,3 +68,4 @@ Route::get('calcduration','AttendenceController@calcduration');
 
 //testing route
 Route::get('latlng','LocationController@latlng');
+Route::get('userroute','LocationController@userroute');

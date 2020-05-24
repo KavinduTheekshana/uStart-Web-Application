@@ -18,8 +18,8 @@ class CreateDailyRoutesTable extends Migration
             $table->string('user_id');
             $table->string('date');
             $table->string('time');
-            $table->string('lat');
-            $table->string('lng');
+            $table->double('lat');
+            $table->double('lng');
             $table->timestamps();
         });
     }

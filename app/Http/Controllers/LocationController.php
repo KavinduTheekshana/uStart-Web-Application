@@ -100,5 +100,17 @@ class LocationController extends Controller
     return $data;
   }
 
+  
+  public function userroute(Request $request){
+    $id = $request->uid;
+    $date=$request->date;
+
+
+    $data = DB::table('daily_routes')
+    ->where(['user_id' => $id , 'date' => $date])
+    ->select('lat','lng')->get();
+    return $data;
+  }
+
 
 }
