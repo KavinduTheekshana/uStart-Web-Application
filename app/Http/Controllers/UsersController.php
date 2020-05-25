@@ -125,7 +125,7 @@ class UsersController extends Controller
 
       public function user_delete($id){
         DB::table('users')->where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('user_diactivate_status', 'User Delete Sucessfully');
       }
 
       public function index()

@@ -63,6 +63,10 @@ class ProductController extends Controller
         return json_encode($JsonArray);
     }
 
+    public function product_delete($id){
+      DB::table('products')->where('id', $id)->delete();
+      return redirect()->back()->with('user_diactivate_status', 'User Delete Sucessfully');
+    }
 
 
 }

@@ -74,6 +74,7 @@ Route::get('category_activate/{id}', 'CategoryController@category_activate')->mi
 Route::get('addproduct','ProductController@addproduct')->middleware('auth');
 Route::post('/saveproduct','ProductController@saveproduct')->middleware('auth');
 Route::get('manageproduct','ProductController@manageproduct')->middleware('auth');
+Route::get('product_delete/{id}', 'ProductController@product_delete')->middleware('auth');
 
 
 // Route::get('manageproduct', function () {

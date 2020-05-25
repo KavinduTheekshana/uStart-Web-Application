@@ -33,6 +33,14 @@
                         <p class="text-muted mb-4 font-13">
                             Available all products.
                         </p>
+                        <br>
+
+                        @if (session('user_diactivate_status'))
+                        <div class="alert alert-outline-danger alert-danger-shadow">
+                            {{ session('user_diactivate_status') }}
+                        </div>
+                        @endif
+
 
                         <table id="datatable" class="table table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -77,8 +85,7 @@
 
 
                                     <td>
-                                        <a href=""><i class="far fa-edit text-info mr-1"></i></a>
-                                        <a href=""><i class="far fa-trash-alt text-danger"></i></a>
+                                        <a href="product_delete/{{$product->id}}"><i class="far fa-trash-alt text-danger"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -102,15 +102,19 @@ class AttendenceController extends Controller
         $id = $request->uid;
         $date = Carbon::createFromFormat('d/m/Y', $request->date)->toDateString();
 
+ 
+
         $select = DB::table('attendences')
         ->where(['user_id' => $id , 'date' => $date])
-        ->select('status')
-        ->first();
+        ->count();
 
-        if ($select->status == "1") {
-          $JsonArray['status'] = "1";
-        } else {
+        if ($select == "0") {
           $JsonArray['status'] = "0";
+
+        } elseif($select == "1"){
+          $JsonArray['status'] = "1";
+        }else {
+          
         }
       
         return json_encode($JsonArray);

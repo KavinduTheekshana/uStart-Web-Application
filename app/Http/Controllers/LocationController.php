@@ -113,4 +113,43 @@ class LocationController extends Controller
   }
 
 
+  public function currentlocation(Request $request){
+    $JsonArray=[];
+    $id = $request->uid;
+
+
+    $data = DB::table('customer_locations')
+    ->where(['customer_id' => $id])
+    ->select('lat','lng','address')->get();
+    return $data;
+    // $JsonArray['data']=$data;
+    // return json_encode($JsonArray);
+  }
+
+
+
+  public function savelatlng(Request $request){
+    $JsonArray=[];
+
+      $userid = $request->userid;
+      $lat = $request->lat;
+      $lng = $request->lng;
+
+
+      $affected = DB::table('customer_locations')
+      ->where('customer_id', $userid)
+      ->update(['lat' => $lat,'lng' => $lng]);;
+
+
+      return $affected;
+    // $JsonArray['code']='1';
+           
+
+
+    // return json_encode($JsonArray);
+}
+
+
+
+
 }
